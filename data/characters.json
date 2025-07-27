@@ -1,0 +1,2195 @@
+[
+  {
+    "id": "1001",
+    "name": "March 7th",
+    "rarity": 4,
+    "path": "Preservation",
+    "element": "Ice",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 511.56,
+      "DEF": 573.3,
+      "SPD": 101,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Ice DMG Boost": 0.224,
+      "DEF%": 0.225,
+      "Effect RES": 0.1
+    },
+    "skills": [
+      "100101",
+      "100102",
+      "100103",
+      "100104",
+      "100106",
+      "100107"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1002",
+    "name": "Dan Heng",
+    "rarity": 4,
+    "path": "Hunt",
+    "element": "Wind",
+    "stats": {
+      "HP": 882,
+      "ATK": 546.84,
+      "DEF": 396.9,
+      "SPD": 110,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "Wind DMG Boost": 0.224,
+      "ATK%": 0.18
+    },
+    "skills": [
+      "100201",
+      "100202",
+      "100203",
+      "100204",
+      "100206",
+      "100207"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1003",
+    "name": "Himeko",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Fire",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 756.756,
+      "DEF": 436.59,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Fire DMG Boost": 0.224,
+      "ATK%": 0.18,
+      "Effect RES": 0.1
+    },
+    "skills": [
+      "100301",
+      "100302",
+      "100303",
+      "100304",
+      "100306",
+      "100307"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1004",
+    "name": "Welt",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1125.432,
+      "ATK": 620.928,
+      "DEF": 509.355,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Imaginary DMG Boost": 0.144,
+      "Effect RES": 0.1,
+      "ATK%": 0.28
+    },
+    "skills": [
+      "100401",
+      "100402",
+      "100403",
+      "100404",
+      "100406",
+      "100407"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1005",
+    "name": "Kafka",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 679.14,
+      "DEF": 485.1,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect Hit Rate": 0.18,
+      "HP%": 0.1,
+      "ATK%": 0.28
+    },
+    "skills": [
+      "100501",
+      "100502",
+      "100503",
+      "100504",
+      "100506",
+      "100507"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1006",
+    "name": "Silver Wolf",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 640.332,
+      "DEF": 460.845,
+      "SPD": 107,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect Hit Rate": 0.18,
+      "Quantum DMG Boost": 0.08,
+      "ATK%": 0.28
+    },
+    "skills": [
+      "100601",
+      "100602",
+      "100603",
+      "100604",
+      "100606",
+      "100607"
+    ],
+    "max_sp": 110
+  },
+  {
+    "id": "1008",
+    "name": "Arlan",
+    "rarity": 4,
+    "path": "Destruction",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1199.52,
+      "ATK": 599.76,
+      "DEF": 330.75,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "ATK%": 0.28,
+      "Effect RES": 0.18
+    },
+    "skills": [
+      "100801",
+      "100802",
+      "100803",
+      "100804",
+      "100806",
+      "100807"
+    ],
+    "max_sp": 110
+  },
+  {
+    "id": "1009",
+    "name": "Asta",
+    "rarity": 4,
+    "path": "Harmony",
+    "element": "Fire",
+    "stats": {
+      "HP": 1023.12,
+      "ATK": 511.56,
+      "DEF": 463.05,
+      "SPD": 106,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT Rate": 0.067,
+      "Fire DMG Boost": 0.224,
+      "DEF%": 0.225
+    },
+    "skills": [
+      "100901",
+      "100902",
+      "100903",
+      "100904",
+      "100906",
+      "100907"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1013",
+    "name": "Herta",
+    "rarity": 4,
+    "path": "Erudition",
+    "element": "Ice",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 396.9,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Ice DMG Boost": 0.224,
+      "DEF%": 0.225,
+      "CRIT Rate": 0.067
+    },
+    "skills": [
+      "101301",
+      "101302",
+      "101303",
+      "101304",
+      "101306",
+      "101307"
+    ],
+    "max_sp": 110
+  },
+  {
+    "id": "1014",
+    "name": "Saber",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Wind",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 601.524,
+      "DEF": 654.885,
+      "SPD": 101,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "Wind DMG Boost": 0.224,
+      "CRIT Rate": 0.12
+    },
+    "skills": [],
+    "max_sp": 360
+  },
+  {
+    "id": "1015",
+    "name": "Archer",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 620.928,
+      "DEF": 485.1,
+      "SPD": 105,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT Rate": 0.067,
+      "Quantum DMG Boost": 0.224,
+      "ATK%": 0.18
+    },
+    "skills": [],
+    "max_sp": 220
+  },
+  {
+    "id": "1101",
+    "name": "Bronya",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Wind",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 582.12,
+      "DEF": 533.61,
+      "SPD": 99,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "Wind DMG Boost": 0.224,
+      "CRIT DMG": 0.24
+    },
+    "skills": [
+      "110101",
+      "110102",
+      "110103",
+      "110104",
+      "110106",
+      "110107"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1102",
+    "name": "Seele",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Quantum",
+    "stats": {
+      "HP": 931.392,
+      "ATK": 640.332,
+      "DEF": 363.825,
+      "SPD": 115,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "CRIT DMG": 0.24
+    },
+    "skills": [
+      "110201",
+      "110202",
+      "110203",
+      "110204",
+      "110206",
+      "110207"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1103",
+    "name": "Serval",
+    "rarity": 4,
+    "path": "Erudition",
+    "element": "Lightning",
+    "stats": {
+      "HP": 917.28,
+      "ATK": 652.68,
+      "DEF": 374.85,
+      "SPD": 104,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT Rate": 0.187,
+      "Effect Hit Rate": 0.18,
+      "Effect RES": 0.1
+    },
+    "skills": [
+      "110301",
+      "110302",
+      "110303",
+      "110304",
+      "110306",
+      "110307"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1104",
+    "name": "Gepard",
+    "rarity": 5,
+    "path": "Preservation",
+    "element": "Ice",
+    "stats": {
+      "HP": 1397.088,
+      "ATK": 543.312,
+      "DEF": 654.885,
+      "SPD": 92,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "Ice DMG Boost": 0.224,
+      "Effect RES": 0.18
+    },
+    "skills": [
+      "110401",
+      "110402",
+      "110403",
+      "110404",
+      "110406",
+      "110407"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1105",
+    "name": "Natasha",
+    "rarity": 4,
+    "path": "Abundance",
+    "element": "Physical",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 476.28,
+      "DEF": 507.15,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.28,
+      "Effect RES": 0.18,
+      "DEF%": 0.125
+    },
+    "skills": [
+      "110501",
+      "110502",
+      "110503",
+      "110504",
+      "110506",
+      "110507"
+    ],
+    "max_sp": 90
+  },
+  {
+    "id": "1106",
+    "name": "Pela",
+    "rarity": 4,
+    "path": "Nihility",
+    "element": "Ice",
+    "stats": {
+      "HP": 987.84,
+      "ATK": 546.84,
+      "DEF": 463.05,
+      "SPD": 105,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.18,
+      "Effect Hit Rate": 0.1,
+      "Ice DMG Boost": 0.224
+    },
+    "skills": [
+      "110601",
+      "110602",
+      "110603",
+      "110604",
+      "110606",
+      "110607"
+    ],
+    "max_sp": 110
+  },
+  {
+    "id": "1107",
+    "name": "Clara",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Physical",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 737.352,
+      "DEF": 485.1,
+      "SPD": 90,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "ATK%": 0.28,
+      "Physical DMG Boost": 0.144
+    },
+    "skills": [
+      "110701",
+      "110702",
+      "110703",
+      "110704",
+      "110706",
+      "110707"
+    ],
+    "max_sp": 110
+  },
+  {
+    "id": "1108",
+    "name": "Sampo",
+    "rarity": 4,
+    "path": "Nihility",
+    "element": "Wind",
+    "stats": {
+      "HP": 1023.12,
+      "ATK": 617.4,
+      "DEF": 396.9,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect Hit Rate": 0.18,
+      "Effect RES": 0.1,
+      "ATK%": 0.28
+    },
+    "skills": [
+      "110801",
+      "110802",
+      "110803",
+      "110804",
+      "110806",
+      "110807"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1109",
+    "name": "Hook",
+    "rarity": 4,
+    "path": "Destruction",
+    "element": "Fire",
+    "stats": {
+      "HP": 1340.64,
+      "ATK": 617.4,
+      "DEF": 352.8,
+      "SPD": 94,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT DMG": 0.133,
+      "ATK%": 0.28,
+      "HP%": 0.18
+    },
+    "skills": [
+      "110901",
+      "110902",
+      "110903",
+      "110904",
+      "110906",
+      "110907",
+      "110909"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1110",
+    "name": "Lynx",
+    "rarity": 4,
+    "path": "Abundance",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 493.92,
+      "DEF": 551.25,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.28,
+      "DEF%": 0.225,
+      "Effect RES": 0.1
+    },
+    "skills": [
+      "111001",
+      "111002",
+      "111003",
+      "111004",
+      "111006",
+      "111007"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1111",
+    "name": "Luka",
+    "rarity": 4,
+    "path": "Nihility",
+    "element": "Physical",
+    "stats": {
+      "HP": 917.28,
+      "ATK": 582.12,
+      "DEF": 485.1,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect Hit Rate": 0.18,
+      "DEF%": 0.125,
+      "ATK%": 0.28
+    },
+    "skills": [
+      "111101",
+      "111102",
+      "111103",
+      "111104",
+      "111106",
+      "111107",
+      "111108"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1112",
+    "name": "Topaz & Numby",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Fire",
+    "stats": {
+      "HP": 931.392,
+      "ATK": 620.928,
+      "DEF": 412.335,
+      "SPD": 110,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "Fire DMG Boost": 0.224,
+      "CRIT Rate": 0.12
+    },
+    "skills": [
+      "111201",
+      "111202",
+      "111203",
+      "111204",
+      "111206",
+      "111207"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1201",
+    "name": "Qingque",
+    "rarity": 4,
+    "path": "Erudition",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1023.12,
+      "ATK": 652.68,
+      "DEF": 441,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.28,
+      "Quantum DMG Boost": 0.144,
+      "DEF%": 0.125
+    },
+    "skills": [
+      "120101",
+      "120102",
+      "120103",
+      "120104",
+      "120106",
+      "120107",
+      "120108"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1202",
+    "name": "Tingyun",
+    "rarity": 4,
+    "path": "Harmony",
+    "element": "Lightning",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 529.2,
+      "DEF": 396.9,
+      "SPD": 112,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Lightning DMG Boost": 0.08,
+      "ATK%": 0.28,
+      "DEF%": 0.225
+    },
+    "skills": [
+      "120201",
+      "120202",
+      "120203",
+      "120204",
+      "120206",
+      "120207"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1203",
+    "name": "Luocha",
+    "rarity": 5,
+    "path": "Abundance",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1280.664,
+      "ATK": 756.756,
+      "DEF": 363.825,
+      "SPD": 101,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.28,
+      "HP%": 0.18,
+      "DEF%": 0.125
+    },
+    "skills": [
+      "120301",
+      "120302",
+      "120303",
+      "120304",
+      "120306",
+      "120307"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1204",
+    "name": "Jing Yuan",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 698.544,
+      "DEF": 485.1,
+      "SPD": 99,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.28,
+      "CRIT Rate": 0.12,
+      "DEF%": 0.125
+    },
+    "skills": [
+      "120401",
+      "120402",
+      "120403",
+      "120404",
+      "120406",
+      "120407"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1205",
+    "name": "Blade",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Wind",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 543.312,
+      "DEF": 485.1,
+      "SPD": 97,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "HP%": 0.28,
+      "CRIT Rate": 0.12
+    },
+    "skills": [
+      "120501",
+      "120502",
+      "120503",
+      "120504",
+      "120506",
+      "120507",
+      "120508"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1206",
+    "name": "Sushang",
+    "rarity": 4,
+    "path": "Hunt",
+    "element": "Physical",
+    "stats": {
+      "HP": 917.28,
+      "ATK": 564.48,
+      "DEF": 418.95,
+      "SPD": 107,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "HP%": 0.18
+    },
+    "skills": [
+      "120601",
+      "120602",
+      "120603",
+      "120604",
+      "120606",
+      "120607"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1207",
+    "name": "Yukong",
+    "rarity": 4,
+    "path": "Harmony",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 917.28,
+      "ATK": 599.76,
+      "DEF": 374.85,
+      "SPD": 107,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.1,
+      "Imaginary DMG Boost": 0.224,
+      "HP%": 0.18
+    },
+    "skills": [
+      "120701",
+      "120702",
+      "120703",
+      "120704",
+      "120706",
+      "120707"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1208",
+    "name": "Fu Xuan",
+    "rarity": 5,
+    "path": "Preservation",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1474.704,
+      "ATK": 465.696,
+      "DEF": 606.375,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "CRIT Rate": 0.187,
+      "HP%": 0.18
+    },
+    "skills": [
+      "120801",
+      "120802",
+      "120803",
+      "120804",
+      "120806",
+      "120807"
+    ],
+    "max_sp": 135
+  },
+  {
+    "id": "1209",
+    "name": "Yanqing",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Ice",
+    "stats": {
+      "HP": 892.584,
+      "ATK": 679.14,
+      "DEF": 412.335,
+      "SPD": 109,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "ATK%": 0.28,
+      "Ice DMG Boost": 0.144
+    },
+    "skills": [
+      "120901",
+      "120902",
+      "120903",
+      "120904",
+      "120906",
+      "120907"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1210",
+    "name": "Guinaifen",
+    "rarity": 4,
+    "path": "Nihility",
+    "element": "Fire",
+    "stats": {
+      "HP": 882,
+      "ATK": 582.12,
+      "DEF": 441,
+      "SPD": 106,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Break Effect": 0.24,
+      "Effect Hit Rate": 0.1,
+      "Fire DMG Boost": 0.224
+    },
+    "skills": [
+      "121001",
+      "121002",
+      "121003",
+      "121004",
+      "121006",
+      "121007"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1211",
+    "name": "Bailu",
+    "rarity": 5,
+    "path": "Abundance",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1319.472,
+      "ATK": 562.716,
+      "DEF": 485.1,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.28,
+      "DEF%": 0.225,
+      "Effect RES": 0.1
+    },
+    "skills": [
+      "121101",
+      "121102",
+      "121103",
+      "121104",
+      "121106",
+      "121107"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1212",
+    "name": "Jingliu",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Ice",
+    "stats": {
+      "HP": 1435.896,
+      "ATK": 679.14,
+      "DEF": 485.1,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "CRIT DMG": 0.373,
+      "SPD": 9
+    },
+    "skills": [
+      "121201",
+      "121202",
+      "121203",
+      "121204",
+      "121206",
+      "121207",
+      "121209"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1213",
+    "name": "Dan Heng • Imbibitor Lunae",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 698.544,
+      "DEF": 363.825,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "Imaginary DMG Boost": 0.224,
+      "CRIT Rate": 0.12
+    },
+    "skills": [
+      "121301",
+      "121302",
+      "121303",
+      "121304",
+      "121306",
+      "121307",
+      "121308",
+      "121309",
+      "121310",
+      "121312"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1214",
+    "name": "Xueyi",
+    "rarity": 4,
+    "path": "Destruction",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 599.76,
+      "DEF": 396.9,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Quantum DMG Boost": 0.08,
+      "Break Effect": 0.373,
+      "HP%": 0.18
+    },
+    "skills": [
+      "121401",
+      "121402",
+      "121403",
+      "121404",
+      "121406",
+      "121407"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1215",
+    "name": "Hanya",
+    "rarity": 4,
+    "path": "Harmony",
+    "element": "Physical",
+    "stats": {
+      "HP": 917.28,
+      "ATK": 564.48,
+      "DEF": 352.8,
+      "SPD": 110,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "ATK%": 0.28,
+      "SPD": 9
+    },
+    "skills": [
+      "121501",
+      "121502",
+      "121503",
+      "121504",
+      "121506",
+      "121507"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1217",
+    "name": "Huohuo",
+    "rarity": 5,
+    "path": "Abundance",
+    "element": "Wind",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 601.524,
+      "DEF": 509.355,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.28,
+      "Effect RES": 0.18,
+      "SPD": 5
+    },
+    "skills": [
+      "121701",
+      "121702",
+      "121703",
+      "121704",
+      "121706",
+      "121707"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1218",
+    "name": "Jiaoqiu",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Fire",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 601.524,
+      "DEF": 509.355,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Fire DMG Boost": 0.144,
+      "SPD": 5,
+      "Effect Hit Rate": 0.28
+    },
+    "skills": [],
+    "max_sp": 100
+  },
+  {
+    "id": "1220",
+    "name": "Feixiao",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Wind",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 601.524,
+      "DEF": 388.08,
+      "SPD": 112,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "CRIT Rate": 0.12
+    },
+    "skills": [],
+    "max_sp": 12
+  },
+  {
+    "id": "1221",
+    "name": "Yunli",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Physical",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 679.14,
+      "DEF": 460.845,
+      "SPD": 94,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT Rate": 0.067,
+      "ATK%": 0.28,
+      "HP%": 0.18
+    },
+    "skills": [],
+    "max_sp": 240
+  },
+  {
+    "id": "1222",
+    "name": "Lingsha",
+    "rarity": 5,
+    "path": "Abundance",
+    "element": "Fire",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 679.14,
+      "DEF": 436.59,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Break Effect": 0.373,
+      "HP%": 0.18,
+      "ATK%": 0.1
+    },
+    "skills": [],
+    "max_sp": 110
+  },
+  {
+    "id": "1223",
+    "name": "Moze",
+    "rarity": 4,
+    "path": "Hunt",
+    "element": "Lightning",
+    "stats": {
+      "HP": 811.44,
+      "ATK": 599.76,
+      "DEF": 352.8,
+      "SPD": 111,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "CRIT DMG": 0.373,
+      "ATK%": 0.18
+    },
+    "skills": [],
+    "max_sp": 120
+  },
+  {
+    "id": "1224",
+    "name": "March 7th",
+    "rarity": 4,
+    "path": "Hunt",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 564.48,
+      "DEF": 441,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "CRIT DMG": 0.24
+    },
+    "skills": [],
+    "max_sp": 110
+  },
+  {
+    "id": "1225",
+    "name": "Fugue",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Fire",
+    "stats": {
+      "HP": 1125.432,
+      "ATK": 582.12,
+      "DEF": 557.865,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Break Effect": 0.24,
+      "HP%": 0.1,
+      "SPD": 14
+    },
+    "skills": [],
+    "max_sp": 130
+  },
+  {
+    "id": "1301",
+    "name": "Gallagher",
+    "rarity": 4,
+    "path": "Abundance",
+    "element": "Fire",
+    "stats": {
+      "HP": 1305.36,
+      "ATK": 529.2,
+      "DEF": 441,
+      "SPD": 98,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.18,
+      "Effect RES": 0.28,
+      "Break Effect": 0.133
+    },
+    "skills": [],
+    "max_sp": 110
+  },
+  {
+    "id": "1302",
+    "name": "Argenti",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Physical",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 737.352,
+      "DEF": 363.825,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.28,
+      "Physical DMG Boost": 0.144,
+      "HP%": 0.1
+    },
+    "skills": [
+      "130201",
+      "130202",
+      "130203",
+      "130204",
+      "130206",
+      "130207",
+      "130214"
+    ],
+    "max_sp": 180
+  },
+  {
+    "id": "1303",
+    "name": "Ruan Mei",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Ice",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 659.736,
+      "DEF": 485.1,
+      "SPD": 104,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "SPD": 5,
+      "Break Effect": 0.373,
+      "DEF%": 0.225
+    },
+    "skills": [
+      "130301",
+      "130302",
+      "130303",
+      "130304",
+      "130306",
+      "130307"
+    ],
+    "max_sp": 130
+  },
+  {
+    "id": "1304",
+    "name": "Aventurine",
+    "rarity": 5,
+    "path": "Preservation",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1203.048,
+      "ATK": 446.292,
+      "DEF": 654.885,
+      "SPD": 106,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "DEF%": 0.35,
+      "Imaginary DMG Boost": 0.144
+    },
+    "skills": [],
+    "max_sp": 110
+  },
+  {
+    "id": "1305",
+    "name": "Dr. Ratio",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 776.16,
+      "DEF": 460.845,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "CRIT Rate": 0.12
+    },
+    "skills": [
+      "130501",
+      "130502",
+      "130503",
+      "130504",
+      "130506",
+      "130507"
+    ],
+    "max_sp": 140
+  },
+  {
+    "id": "1306",
+    "name": "Sparkle",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1397.088,
+      "ATK": 523.908,
+      "DEF": 485.1,
+      "SPD": 101,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "HP%": 0.28,
+      "CRIT DMG": 0.24
+    },
+    "skills": [
+      "130601",
+      "130602",
+      "130603",
+      "130604",
+      "130606",
+      "130607"
+    ],
+    "max_sp": 110
+  },
+  {
+    "id": "1307",
+    "name": "Black Swan",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Wind",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 659.736,
+      "DEF": 485.1,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Wind DMG Boost": 0.144,
+      "Effect Hit Rate": 0.1,
+      "ATK%": 0.28
+    },
+    "skills": [
+      "130701",
+      "130702",
+      "130703",
+      "130704",
+      "130706",
+      "130707"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "1308",
+    "name": "Acheron",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1125.432,
+      "ATK": 698.544,
+      "DEF": 436.59,
+      "SPD": 101,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT DMG": 0.24,
+      "Lightning DMG Boost": 0.08,
+      "ATK%": 0.28
+    },
+    "skills": [],
+    "max_sp": 9
+  },
+  {
+    "id": "1309",
+    "name": "Robin",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Physical",
+    "stats": {
+      "HP": 1280.664,
+      "ATK": 640.332,
+      "DEF": 485.1,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "SPD": 5,
+      "ATK%": 0.28,
+      "HP%": 0.18
+    },
+    "skills": [],
+    "max_sp": 160
+  },
+  {
+    "id": "1310",
+    "name": "Firefly",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Fire",
+    "stats": {
+      "HP": 814.968,
+      "ATK": 523.908,
+      "DEF": 776.16,
+      "SPD": 104,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "SPD": 5,
+      "Break Effect": 0.373,
+      "Effect RES": 0.18
+    },
+    "skills": [],
+    "max_sp": 240
+  },
+  {
+    "id": "1312",
+    "name": "Misha",
+    "rarity": 4,
+    "path": "Destruction",
+    "element": "Ice",
+    "stats": {
+      "HP": 1270.08,
+      "ATK": 599.76,
+      "DEF": 396.9,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT Rate": 0.067,
+      "Ice DMG Boost": 0.224,
+      "DEF%": 0.225
+    },
+    "skills": [
+      "131201",
+      "131202",
+      "131203",
+      "131204",
+      "131206",
+      "131207"
+    ],
+    "max_sp": 100
+  },
+  {
+    "id": "1313",
+    "name": "Sunday",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 640.332,
+      "DEF": 533.61,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "CRIT DMG": 0.373,
+      "Effect RES": 0.18
+    },
+    "skills": [],
+    "max_sp": 130
+  },
+  {
+    "id": "1314",
+    "name": "Jade",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 659.736,
+      "DEF": 509.355,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Quantum DMG Boost": 0.224,
+      "ATK%": 0.18,
+      "Effect RES": 0.1
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "1315",
+    "name": "Boothill",
+    "rarity": 5,
+    "path": "Hunt",
+    "element": "Physical",
+    "stats": {
+      "HP": 1203.048,
+      "ATK": 620.928,
+      "DEF": 436.59,
+      "SPD": 107,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "Break Effect": 0.373,
+      "ATK%": 0.18
+    },
+    "skills": [],
+    "max_sp": 115
+  },
+  {
+    "id": "1317",
+    "name": "Rappa",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 717.948,
+      "DEF": 460.845,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.28,
+      "SPD": 9,
+      "Break Effect": 0.133
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "1401",
+    "name": "The Herta",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Ice",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 679.14,
+      "DEF": 485.1,
+      "SPD": 99,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Ice DMG Boost": 0.224,
+      "ATK%": 0.18,
+      "SPD": 5
+    },
+    "skills": [],
+    "max_sp": 220
+  },
+  {
+    "id": "1402",
+    "name": "Aglaea",
+    "rarity": 5,
+    "path": "Remembrance",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 698.544,
+      "DEF": 485.1,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "CRIT Rate": 0.12,
+      "Lightning DMG Boost": 0.224
+    },
+    "skills": [],
+    "max_sp": 350
+  },
+  {
+    "id": "1403",
+    "name": "Tribbie",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 523.908,
+      "DEF": 727.65,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "CRIT DMG": 0.373,
+      "CRIT Rate": 0.12
+    },
+    "skills": [],
+    "max_sp": 120
+  },
+  {
+    "id": "1404",
+    "name": "Mydei",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1552.32,
+      "ATK": 426.888,
+      "DEF": 194.04,
+      "SPD": 95,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "SPD": 5,
+      "CRIT DMG": 0.373,
+      "HP%": 0.18
+    },
+    "skills": [],
+    "max_sp": 160
+  },
+  {
+    "id": "1405",
+    "name": "Anaxa",
+    "rarity": 5,
+    "path": "Erudition",
+    "element": "Wind",
+    "stats": {
+      "HP": 970.2,
+      "ATK": 756.756,
+      "DEF": 557.865,
+      "SPD": 97,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Wind DMG Boost": 0.224,
+      "CRIT Rate": 0.12,
+      "HP%": 0.1
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "1406",
+    "name": "Cipher",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Quantum",
+    "stats": {
+      "HP": 931.392,
+      "ATK": 640.332,
+      "DEF": 509.355,
+      "SPD": 106,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Quantum DMG Boost": 0.144,
+      "Effect Hit Rate": 0.1,
+      "SPD": 14
+    },
+    "skills": [],
+    "max_sp": 130
+  },
+  {
+    "id": "1407",
+    "name": "Castorice",
+    "rarity": 5,
+    "path": "Remembrance",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1629.936,
+      "ATK": 523.908,
+      "DEF": 485.1,
+      "SPD": 95,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "CRIT DMG": 0.133,
+      "Quantum DMG Boost": 0.144,
+      "CRIT Rate": 0.187
+    },
+    "skills": [],
+    "max_sp": 0
+  },
+  {
+    "id": "1408",
+    "name": "Phainon",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Physical",
+    "stats": {
+      "HP": 1435.896,
+      "ATK": 582.12,
+      "DEF": 703.395,
+      "SPD": 94,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "SPD": 5,
+      "CRIT DMG": 0.373,
+      "CRIT Rate": 0.12
+    },
+    "skills": [],
+    "max_sp": 12
+  },
+  {
+    "id": "1409",
+    "name": "Hyacine",
+    "rarity": 5,
+    "path": "Remembrance",
+    "element": "Wind",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 388.08,
+      "DEF": 630.63,
+      "SPD": 110,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "Effect RES": 0.18,
+      "SPD": 14
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "1410",
+    "name": "Hysilens",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Physical",
+    "stats": {
+      "HP": 1203.048,
+      "ATK": 601.524,
+      "DEF": 485.1,
+      "SPD": 102,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "SPD": 9,
+      "Effect Hit Rate": 0.1,
+      "ATK%": 0.28
+    },
+    "skills": [],
+    "max_sp": 130
+  },
+  {
+    "id": "1412",
+    "name": "Cerydra",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Wind",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 620.928,
+      "DEF": 485.1,
+      "SPD": 99,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "Wind DMG Boost": 0.224,
+      "ATK%": 0.18
+    },
+    "skills": [],
+    "max_sp": 130
+  },
+  {
+    "id": "8001",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Physical",
+    "stats": {
+      "HP": 1203.048,
+      "ATK": 620.928,
+      "DEF": 460.845,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "HP%": 0.18
+    },
+    "skills": [
+      "800101",
+      "800102",
+      "800103",
+      "800104",
+      "800106",
+      "800107",
+      "800108",
+      "800109"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "8002",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Physical",
+    "stats": {
+      "HP": 1203.048,
+      "ATK": 620.928,
+      "DEF": 460.845,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "DEF%": 0.125,
+      "ATK%": 0.28,
+      "HP%": 0.18
+    },
+    "skills": [
+      "800201",
+      "800202",
+      "800203",
+      "800204",
+      "800206",
+      "800207",
+      "800208",
+      "800209"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "8003",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Preservation",
+    "element": "Fire",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 601.524,
+      "DEF": 606.375,
+      "SPD": 95,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "DEF%": 0.35,
+      "ATK%": 0.18
+    },
+    "skills": [
+      "800301",
+      "800302",
+      "800303",
+      "800304",
+      "800306",
+      "800307",
+      "800308"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "8004",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Preservation",
+    "element": "Fire",
+    "stats": {
+      "HP": 1241.856,
+      "ATK": 601.524,
+      "DEF": 606.375,
+      "SPD": 95,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "DEF%": 0.35,
+      "ATK%": 0.18
+    },
+    "skills": [
+      "800401",
+      "800402",
+      "800403",
+      "800404",
+      "800406",
+      "800407",
+      "800408"
+    ],
+    "max_sp": 120
+  },
+  {
+    "id": "8005",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 446.292,
+      "DEF": 679.14,
+      "SPD": 105,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "Break Effect": 0.373,
+      "Imaginary DMG Boost": 0.144
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "8006",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Harmony",
+    "element": "Imaginary",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 446.292,
+      "DEF": 679.14,
+      "SPD": 105,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "Break Effect": 0.373,
+      "Imaginary DMG Boost": 0.144
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "8007",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Remembrance",
+    "element": "Ice",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 543.312,
+      "DEF": 630.63,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.14,
+      "HP%": 0.14,
+      "CRIT DMG": 0.373
+    },
+    "skills": [],
+    "max_sp": 160
+  },
+  {
+    "id": "8008",
+    "name": "Trailblazer",
+    "rarity": 5,
+    "path": "Remembrance",
+    "element": "Ice",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 543.312,
+      "DEF": 630.63,
+      "SPD": 103,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "ATK%": 0.14,
+      "HP%": 0.14,
+      "CRIT DMG": 0.373
+    },
+    "skills": [],
+    "max_sp": 160
+  },
+  {
+    "id": "1212b1",
+    "name": "Jingliu",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Ice",
+    "stats": {
+      "HP": 1435.896,
+      "ATK": 679.14,
+      "DEF": 485.1,
+      "SPD": 96,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "HP%": 0.1,
+      "CRIT DMG": 0.373,
+      "SPD": 9
+    },
+    "skills": [],
+    "max_sp": 140
+  },
+  {
+    "id": "1205b1",
+    "name": "Blade",
+    "rarity": 5,
+    "path": "Destruction",
+    "element": "Wind",
+    "stats": {
+      "HP": 1358.28,
+      "ATK": 543.312,
+      "DEF": 485.1,
+      "SPD": 97,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect RES": 0.1,
+      "HP%": 0.28,
+      "CRIT Rate": 0.12
+    },
+    "skills": [],
+    "max_sp": 130
+  },
+  {
+    "id": "1005b1",
+    "name": "Kafka",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Lightning",
+    "stats": {
+      "HP": 1086.624,
+      "ATK": 679.14,
+      "DEF": 485.1,
+      "SPD": 100,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect Hit Rate": 0.18,
+      "HP%": 0.1,
+      "ATK%": 0.28
+    },
+    "skills": [],
+    "max_sp": 120
+  },
+  {
+    "id": "1006b1",
+    "name": "Silver Wolf",
+    "rarity": 5,
+    "path": "Nihility",
+    "element": "Quantum",
+    "stats": {
+      "HP": 1047.816,
+      "ATK": 640.332,
+      "DEF": 460.845,
+      "SPD": 107,
+      "CRIT Rate": 0.05,
+      "CRIT DMG": 0.5
+    },
+    "traces": {
+      "Effect Hit Rate": 0.18,
+      "Quantum DMG Boost": 0.08,
+      "ATK%": 0.28
+    },
+    "skills": [],
+    "max_sp": 110
+  }
+]

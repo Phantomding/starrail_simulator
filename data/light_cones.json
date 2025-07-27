@@ -1,0 +1,1887 @@
+[
+  {
+    "id": "20000",
+    "name": "Arrows",
+    "rarity": 3,
+    "path": "Hunt",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20000"
+  },
+  {
+    "id": "20001",
+    "name": "Cornucopia",
+    "rarity": 3,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 264.6,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20001"
+  },
+  {
+    "id": "20002",
+    "name": "Collapsing Sky",
+    "rarity": 3,
+    "path": "Destruction",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 370.44,
+      "DEF": 198.45
+    },
+    "desc": null,
+    "skill_id": "20002"
+  },
+  {
+    "id": "20003",
+    "name": "Amber",
+    "rarity": 3,
+    "path": "Preservation",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 264.6,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "20003"
+  },
+  {
+    "id": "20004",
+    "name": "Void",
+    "rarity": 3,
+    "path": "Nihility",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20004"
+  },
+  {
+    "id": "20005",
+    "name": "Chorus",
+    "rarity": 3,
+    "path": "Harmony",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20005"
+  },
+  {
+    "id": "20006",
+    "name": "Data Bank",
+    "rarity": 3,
+    "path": "Erudition",
+    "stats": {
+      "HP": 740.88,
+      "ATK": 370.44,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20006"
+  },
+  {
+    "id": "20007",
+    "name": "Darting Arrow",
+    "rarity": 3,
+    "path": "Hunt",
+    "stats": {
+      "HP": 740.88,
+      "ATK": 370.44,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20007"
+  },
+  {
+    "id": "20008",
+    "name": "Fine Fruit",
+    "rarity": 3,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 317.52,
+      "DEF": 198.45
+    },
+    "desc": null,
+    "skill_id": "20008"
+  },
+  {
+    "id": "20009",
+    "name": "Shattered Home",
+    "rarity": 3,
+    "path": "Destruction",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 370.44,
+      "DEF": 198.45
+    },
+    "desc": null,
+    "skill_id": "20009"
+  },
+  {
+    "id": "20010",
+    "name": "Defense",
+    "rarity": 3,
+    "path": "Preservation",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 264.6,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20010"
+  },
+  {
+    "id": "20011",
+    "name": "Loop",
+    "rarity": 3,
+    "path": "Nihility",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20011"
+  },
+  {
+    "id": "20012",
+    "name": "Meshing Cogs",
+    "rarity": 3,
+    "path": "Harmony",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20012"
+  },
+  {
+    "id": "20013",
+    "name": "Passkey",
+    "rarity": 3,
+    "path": "Erudition",
+    "stats": {
+      "HP": 740.88,
+      "ATK": 370.44,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20013"
+  },
+  {
+    "id": "20014",
+    "name": "Adversarial",
+    "rarity": 3,
+    "path": "Hunt",
+    "stats": {
+      "HP": 740.88,
+      "ATK": 370.44,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20014"
+  },
+  {
+    "id": "20015",
+    "name": "Multiplication",
+    "rarity": 3,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 317.52,
+      "DEF": 198.45
+    },
+    "desc": null,
+    "skill_id": "20015"
+  },
+  {
+    "id": "20016",
+    "name": "Mutual Demise",
+    "rarity": 3,
+    "path": "Destruction",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 370.44,
+      "DEF": 198.45
+    },
+    "desc": null,
+    "skill_id": "20016"
+  },
+  {
+    "id": "20017",
+    "name": "Pioneering",
+    "rarity": 3,
+    "path": "Preservation",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 264.6,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20017"
+  },
+  {
+    "id": "20018",
+    "name": "Hidden Shadow",
+    "rarity": 3,
+    "path": "Nihility",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20018"
+  },
+  {
+    "id": "20019",
+    "name": "Mediation",
+    "rarity": 3,
+    "path": "Harmony",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20019"
+  },
+  {
+    "id": "20020",
+    "name": "Sagacity",
+    "rarity": 3,
+    "path": "Erudition",
+    "stats": {
+      "HP": 740.88,
+      "ATK": 370.44,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20020"
+  },
+  {
+    "id": "20021",
+    "name": "Shadowburn",
+    "rarity": 3,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 317.52,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20021"
+  },
+  {
+    "id": "20022",
+    "name": "Reminiscence",
+    "rarity": 3,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 635.04,
+      "ATK": 423.36,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "20022"
+  },
+  {
+    "id": "21000",
+    "name": "Post-Op Conversation",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 423.36,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21000"
+  },
+  {
+    "id": "21001",
+    "name": "Good Night and Sleep Well",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21001"
+  },
+  {
+    "id": "21002",
+    "name": "Day One of My New Life",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 370.44,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "21002"
+  },
+  {
+    "id": "21003",
+    "name": "Only Silence Remains",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21003"
+  },
+  {
+    "id": "21004",
+    "name": "Memories of the Past",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21004"
+  },
+  {
+    "id": "21005",
+    "name": "The Moles Welcome You",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "21005"
+  },
+  {
+    "id": "21006",
+    "name": "The Birth of the Self",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21006"
+  },
+  {
+    "id": "21007",
+    "name": "Shared Feeling",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21007"
+  },
+  {
+    "id": "21008",
+    "name": "Eyes of the Prey",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21008"
+  },
+  {
+    "id": "21009",
+    "name": "Landau's Choice",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21009"
+  },
+  {
+    "id": "21010",
+    "name": "Swordplay",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21010"
+  },
+  {
+    "id": "21011",
+    "name": "Planetary Rendezvous",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 423.36,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21011"
+  },
+  {
+    "id": "21012",
+    "name": "A Secret Vow",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "21012"
+  },
+  {
+    "id": "21013",
+    "name": "Make the World Clamor",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21013"
+  },
+  {
+    "id": "21014",
+    "name": "Perfect Timing",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21014"
+  },
+  {
+    "id": "21015",
+    "name": "Resolution Shines As Pearls of Sweat",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21015"
+  },
+  {
+    "id": "21016",
+    "name": "Trend of the Universal Market",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 370.44,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21016"
+  },
+  {
+    "id": "21017",
+    "name": "Subscribe for More!",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21017"
+  },
+  {
+    "id": "21018",
+    "name": "Dance! Dance! Dance!",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21018"
+  },
+  {
+    "id": "21019",
+    "name": "Under the Blue Sky",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21019"
+  },
+  {
+    "id": "21020",
+    "name": "Geniuses' Repose",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21020"
+  },
+  {
+    "id": "21021",
+    "name": "Quid Pro Quo",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21021"
+  },
+  {
+    "id": "21022",
+    "name": "Fermata",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21022"
+  },
+  {
+    "id": "21023",
+    "name": "We Are Wildfire",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 740.88,
+      "ATK": 476.28,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "21023"
+  },
+  {
+    "id": "21024",
+    "name": "River Flows in Spring",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21024"
+  },
+  {
+    "id": "21025",
+    "name": "Past and Future",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21025"
+  },
+  {
+    "id": "21026",
+    "name": "Woof! Walk Time!",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21026"
+  },
+  {
+    "id": "21027",
+    "name": "The Seriousness of Breakfast",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21027"
+  },
+  {
+    "id": "21028",
+    "name": "Warmth Shortens Cold Nights",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 370.44,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21028"
+  },
+  {
+    "id": "21029",
+    "name": "We Will Meet Again",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 529.2,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21029"
+  },
+  {
+    "id": "21030",
+    "name": "This Is Me!",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 370.44,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "21030"
+  },
+  {
+    "id": "21031",
+    "name": "Return to Darkness",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 529.2,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21031"
+  },
+  {
+    "id": "21032",
+    "name": "Carve the Moon, Weave the Clouds",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21032"
+  },
+  {
+    "id": "21033",
+    "name": "Nowhere to Run",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 529.2,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "21033"
+  },
+  {
+    "id": "21034",
+    "name": "Today Is Another Peaceful Day",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 529.2,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21034"
+  },
+  {
+    "id": "21035",
+    "name": "What Is Real?",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 423.36,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21035"
+  },
+  {
+    "id": "21036",
+    "name": "Dreamville Adventure",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21036"
+  },
+  {
+    "id": "21037",
+    "name": "Final Victor",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21037"
+  },
+  {
+    "id": "21038",
+    "name": "Flames Afar",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "21038"
+  },
+  {
+    "id": "21039",
+    "name": "Destiny's Threads Forewoven",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 370.44,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "21039"
+  },
+  {
+    "id": "21040",
+    "name": "The Day The Cosmos Fell",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21040"
+  },
+  {
+    "id": "21041",
+    "name": "It's Showtime",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "21041"
+  },
+  {
+    "id": "21042",
+    "name": "Indelible Promise",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21042"
+  },
+  {
+    "id": "21043",
+    "name": "Concert for Two",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 370.44,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "21043"
+  },
+  {
+    "id": "21044",
+    "name": "Boundless Choreo",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21044"
+  },
+  {
+    "id": "21045",
+    "name": "After the Charmony Fall",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21045"
+  },
+  {
+    "id": "21046",
+    "name": "Poised to Bloom",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21046"
+  },
+  {
+    "id": "21047",
+    "name": "Shadowed by Night",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21047"
+  },
+  {
+    "id": "21048",
+    "name": "Dream's Montage",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21048"
+  },
+  {
+    "id": "21050",
+    "name": "Victory In a Blink",
+    "rarity": 4,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 846.72,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21050"
+  },
+  {
+    "id": "21051",
+    "name": "Geniuses' Greetings",
+    "rarity": 4,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21051"
+  },
+  {
+    "id": "21052",
+    "name": "Sweat Now, Cry Less",
+    "rarity": 4,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 198.45
+    },
+    "desc": null,
+    "skill_id": "21052"
+  },
+  {
+    "id": "21053",
+    "name": "Journey, Forever Peaceful",
+    "rarity": 4,
+    "path": "Preservation",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 370.44,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "21053"
+  },
+  {
+    "id": "21054",
+    "name": "The Story's Next Page",
+    "rarity": 4,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 370.44,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21054"
+  },
+  {
+    "id": "21055",
+    "name": "Unto Tomorrow's Morrow",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21055"
+  },
+  {
+    "id": "21056",
+    "name": "In Pursuit of the Wind",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21056"
+  },
+  {
+    "id": "21057",
+    "name": "The Flower Remembers",
+    "rarity": 4,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21057"
+  },
+  {
+    "id": "21058",
+    "name": "A Trail of Bygone Blood",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21058"
+  },
+  {
+    "id": "21060",
+    "name": "A Dream Scented in Wheat",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21060"
+  },
+  {
+    "id": "21061",
+    "name": "Holiday Thermae Escapade",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "21061"
+  },
+  {
+    "id": "21062",
+    "name": "See You at the End",
+    "rarity": 4,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "21062"
+  },
+  {
+    "id": "22000",
+    "name": "Before the Tutorial Mission Starts",
+    "rarity": 4,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "22000"
+  },
+  {
+    "id": "22001",
+    "name": "Hey, Over Here",
+    "rarity": 4,
+    "path": "Abundance",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 423.36,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "22001"
+  },
+  {
+    "id": "22002",
+    "name": "For Tomorrow's Journey",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "22002"
+  },
+  {
+    "id": "22003",
+    "name": "Ninja Record: Sound Hunt",
+    "rarity": 4,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 264.6
+    },
+    "desc": null,
+    "skill_id": "22003"
+  },
+  {
+    "id": "22004",
+    "name": "The Great Cosmic Enterprise",
+    "rarity": 4,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "22004"
+  },
+  {
+    "id": "22005",
+    "name": "Maze Restaurant Forever",
+    "rarity": 4,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "22005"
+  },
+  {
+    "id": "23000",
+    "name": "Night on the Milky Way",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 582.12,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23000"
+  },
+  {
+    "id": "23001",
+    "name": "In the Night",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23001"
+  },
+  {
+    "id": "23002",
+    "name": "Something Irreplaceable",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 582.12,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23002"
+  },
+  {
+    "id": "23003",
+    "name": "But the Battle Isn't Over",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 529.2,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23003"
+  },
+  {
+    "id": "23004",
+    "name": "In the Name of the World",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23004"
+  },
+  {
+    "id": "23005",
+    "name": "Moment of Victory",
+    "rarity": 5,
+    "path": "Preservation",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 476.28,
+      "DEF": 595.35
+    },
+    "desc": null,
+    "skill_id": "23005"
+  },
+  {
+    "id": "23006",
+    "name": "Patience Is All You Need",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23006"
+  },
+  {
+    "id": "23007",
+    "name": "Incessant Rain",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23007"
+  },
+  {
+    "id": "23008",
+    "name": "Echoes of the Coffin",
+    "rarity": 5,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 582.12,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23008"
+  },
+  {
+    "id": "23009",
+    "name": "The Unreachable Side",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1270.08,
+      "ATK": 582.12,
+      "DEF": 330.75
+    },
+    "desc": null,
+    "skill_id": "23009"
+  },
+  {
+    "id": "23010",
+    "name": "Before Dawn",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23010"
+  },
+  {
+    "id": "23011",
+    "name": "She Already Shut Her Eyes",
+    "rarity": 5,
+    "path": "Preservation",
+    "stats": {
+      "HP": 1270.08,
+      "ATK": 423.36,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23011"
+  },
+  {
+    "id": "23012",
+    "name": "Sleep Like the Dead",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23012"
+  },
+  {
+    "id": "23013",
+    "name": "Time Waits for No One",
+    "rarity": 5,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1270.08,
+      "ATK": 476.28,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23013"
+  },
+  {
+    "id": "23014",
+    "name": "I Shall Be My Own Sword",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 582.12,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23014"
+  },
+  {
+    "id": "23015",
+    "name": "Brighter Than the Sun",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 635.04,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23015"
+  },
+  {
+    "id": "23016",
+    "name": "Worrisome, Blissful",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23016"
+  },
+  {
+    "id": "23017",
+    "name": "Night of Fright",
+    "rarity": 5,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 476.28,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23017"
+  },
+  {
+    "id": "23018",
+    "name": "An Instant Before A Gaze",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23018"
+  },
+  {
+    "id": "23019",
+    "name": "Past Self in Mirror",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23019"
+  },
+  {
+    "id": "23020",
+    "name": "Baptism of Pure Thought",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23020"
+  },
+  {
+    "id": "23021",
+    "name": "Earthly Escapade",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 529.2,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23021"
+  },
+  {
+    "id": "23022",
+    "name": "Reforged Remembrance",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23022"
+  },
+  {
+    "id": "23023",
+    "name": "Inherently Unjust Destiny",
+    "rarity": 5,
+    "path": "Preservation",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 423.36,
+      "DEF": 661.5
+    },
+    "desc": null,
+    "skill_id": "23023"
+  },
+  {
+    "id": "23024",
+    "name": "Along the Passing Shore",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 635.04,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23024"
+  },
+  {
+    "id": "23025",
+    "name": "Whereabouts Should Dreams Rest",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 476.28,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23025"
+  },
+  {
+    "id": "23026",
+    "name": "Flowing Nightglow",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 635.04,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23026"
+  },
+  {
+    "id": "23027",
+    "name": "Sailing Towards a Second Life",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23027"
+  },
+  {
+    "id": "23028",
+    "name": "Yet Hope Is Priceless",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23028"
+  },
+  {
+    "id": "23029",
+    "name": "Those Many Springs",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23029"
+  },
+  {
+    "id": "23030",
+    "name": "Dance at Sunset",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 582.12,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23030"
+  },
+  {
+    "id": "23031",
+    "name": "I Venture Forth to Hunt",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 635.04,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23031"
+  },
+  {
+    "id": "23032",
+    "name": "Scent Alone Stays True",
+    "rarity": 5,
+    "path": "Abundance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23032"
+  },
+  {
+    "id": "23033",
+    "name": "Ninjutsu Inscription: Dazzling Evilbreaker",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23033"
+  },
+  {
+    "id": "23034",
+    "name": "A Grounded Ascent",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 476.28,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23034"
+  },
+  {
+    "id": "23035",
+    "name": "Long Road Leads Home",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 476.28,
+      "DEF": 661.5
+    },
+    "desc": null,
+    "skill_id": "23035"
+  },
+  {
+    "id": "23036",
+    "name": "Time Woven Into Gold",
+    "rarity": 5,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 635.04,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23036"
+  },
+  {
+    "id": "23037",
+    "name": "Into the Unreachable Veil",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 635.04,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23037"
+  },
+  {
+    "id": "23038",
+    "name": "If Time Were a Flower",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 1270.08,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23038"
+  },
+  {
+    "id": "23039",
+    "name": "Flame of Blood, Blaze My Path",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1375.92,
+      "ATK": 476.28,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23039"
+  },
+  {
+    "id": "23040",
+    "name": "Make Farewells More Beautiful",
+    "rarity": 5,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1270.08,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23040"
+  },
+  {
+    "id": "23041",
+    "name": "Life Should Be Cast to Flames",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23041"
+  },
+  {
+    "id": "23042",
+    "name": "Long May Rainbows Adorn the Sky",
+    "rarity": 5,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1164.24,
+      "ATK": 476.28,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23042"
+  },
+  {
+    "id": "23043",
+    "name": "Lies Dance on the Breeze",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23043"
+  },
+  {
+    "id": "23044",
+    "name": "Thus Burns the Dawn",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 687.96,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "23044"
+  },
+  {
+    "id": "23045",
+    "name": "A Thankless Coronation",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23045"
+  },
+  {
+    "id": "23046",
+    "name": "The Hell Where Ideals Burn",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 582.12,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "23046"
+  },
+  {
+    "id": "23047",
+    "name": "Why Does the Ocean Sing",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 635.04,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23047"
+  },
+  {
+    "id": "23048",
+    "name": "Era Engraved by Golden Blood",
+    "rarity": 5,
+    "path": "Harmony",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 635.04,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "23048"
+  },
+  {
+    "id": "24000",
+    "name": "On the Fall of an Aeon",
+    "rarity": 5,
+    "path": "Destruction",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "24000"
+  },
+  {
+    "id": "24001",
+    "name": "Cruising in the Stellar Sea",
+    "rarity": 5,
+    "path": "Hunt",
+    "stats": {
+      "HP": 952.56,
+      "ATK": 529.2,
+      "DEF": 463.05
+    },
+    "desc": null,
+    "skill_id": "24001"
+  },
+  {
+    "id": "24002",
+    "name": "Texture of Memories",
+    "rarity": 5,
+    "path": "Preservation",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 423.36,
+      "DEF": 529.2
+    },
+    "desc": null,
+    "skill_id": "24002"
+  },
+  {
+    "id": "24003",
+    "name": "Solitary Healing",
+    "rarity": 5,
+    "path": "Nihility",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "24003"
+  },
+  {
+    "id": "24004",
+    "name": "Eternal Calculus",
+    "rarity": 5,
+    "path": "Erudition",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "24004"
+  },
+  {
+    "id": "24005",
+    "name": "Memory's Curtain Never Falls",
+    "rarity": 5,
+    "path": "Remembrance",
+    "stats": {
+      "HP": 1058.4,
+      "ATK": 529.2,
+      "DEF": 396.9
+    },
+    "desc": null,
+    "skill_id": "24005"
+  }
+]
