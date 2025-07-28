@@ -186,6 +186,12 @@ class Character:
         if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
             self.light_cone.skill_instance.on_turn_start(self)
         
+        # Buff回合开始效果
+        if hasattr(self, 'buffs') and self.buffs:
+            for buff in self.buffs:
+                if hasattr(buff, 'on_turn_start') and callable(buff.on_turn_start):
+                    buff.on_turn_start(self)
+        
         # 检查是否可以使用终极技（额外回合中不能使用终极技）
         if self.can_use_ultimate() and not self.is_in_extra_turn():
             # 优先使用终极技
@@ -254,48 +260,72 @@ class Character:
             if is_skill:
                 # 战技需要消耗战技点
                 if hasattr(battle_context, 'can_use_skill') and battle_context.can_use_skill(self):
-                    # 可以使用战技
                     # 检查是否为治疗技能
-                    from starrail.core.ai_strategies import select_heal_targets
-                    intent = None
-                    max_level = getattr(skill, 'max_level', 1)
-                    if hasattr(self, 'skill_manager') and self.skill_manager is not None:
-                        # 先用空目标获取intent
-                        intent = self.skill_manager.skill_data_dict.get(getattr(skill, 'skill_id', ''), None)
-                        if intent is not None:
-                            intent = skill.use(self, [], battle_context, level=max_level)
-                    if intent and intent.get('type') == 'heal_only':
-                        # 选择治疗目标
-                        heal_targets = select_heal_targets(self, battle_context, skill)
-                        print(f"{self.name} 使用战技 [{getattr(skill, 'name', str(skill))}] 治疗 {heal_targets[0].name}")
-                        self.set_last_skill_type("BPSkill")
-                        battle_context.use_skill_point(self)
-                        if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
-                            self.light_cone.skill_instance.on_skill_used(self, "BPSkill")
-                        if hasattr(self, 'relic_set_skills') and self.relic_set_skills:
-                            for skill_instance in self.relic_set_skills:
-                                skill_instance.on_skill_used(self, "BPSkill")
-                        if hasattr(self, 'skill_manager') and self.skill_manager is not None:
-                            self.skill_manager.use_skill(getattr(skill, 'skill_id', ''), self, heal_targets, battle_context, level=max_level)
-                        else:
-                            skill.use(self, heal_targets, battle_context, level=max_level)
-                        self.on_skill_used("BPSkill")
-                    else:
-                        enemies = [c for c in battle_context.characters if c.side != self.side and c.is_alive()]
-                        if enemies:
-                            target = random.choice(enemies)
-                            print(f"{self.name} 使用战技 [{getattr(skill, 'name', str(skill))}] 攻击 {target.name}")
+                    is_heal_skill = (skill_id == "110502" or  # Natasha治疗技能
+                                   getattr(skill, 'type', '') == 'Heal' or
+                                   'heal' in getattr(skill, 'name', '').lower())
+                    
+                    if is_heal_skill:
+                        # 治疗技能选择队友作为目标
+                        allies = [c for c in battle_context.characters if c.side == self.side and c.is_alive()]
+                        if allies:
+                            # 优先选择血量最低的队友
+                            allies.sort(key=lambda c: c.hp / max(1, c.get_max_hp()))
+                            target = allies[0]
+                            max_level = getattr(skill, 'max_level', 1)
+                            print(f"{self.name} 使用战技 [{getattr(skill, 'name', str(skill))}] 治疗 {target.name}")
+                            # 记录技能类型
                             self.set_last_skill_type("BPSkill")
+                            # 消耗战技点
                             battle_context.use_skill_point(self)
+                            
+                            # 触发光锥技能效果（在伤害结算前）
                             if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
                                 self.light_cone.skill_instance.on_skill_used(self, "BPSkill")
+                            
+                            # 触发遗器套装技能效果（在伤害结算前）
                             if hasattr(self, 'relic_set_skills') and self.relic_set_skills:
                                 for skill_instance in self.relic_set_skills:
                                     skill_instance.on_skill_used(self, "BPSkill")
+                            
+                            # 使用技能（Buff会在技能内部应用）
                             if hasattr(self, 'skill_manager') and self.skill_manager is not None:
                                 self.skill_manager.use_skill(getattr(skill, 'skill_id', ''), self, [target], battle_context, level=max_level)
                             else:
                                 skill.use(self, [target], battle_context, level=max_level)
+                            
+                            # 战技回复能量
+                            self.on_skill_used("BPSkill")
+                        else:
+                            print(f"{self.name} 没有可治疗的队友。")
+                    else:
+                        # 攻击技能选择敌人作为目标
+                        enemies = [c for c in battle_context.characters if c.side != self.side and c.is_alive()]
+                        if enemies:
+                            target = random.choice(enemies)
+                            max_level = getattr(skill, 'max_level', 1)
+                            print(f"{self.name} 使用战技 [{getattr(skill, 'name', str(skill))}] 攻击 {target.name}")
+                            # 记录技能类型
+                            self.set_last_skill_type("BPSkill")
+                            # 消耗战技点
+                            battle_context.use_skill_point(self)
+                            
+                            # 触发光锥技能效果（在伤害结算前）
+                            if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
+                                self.light_cone.skill_instance.on_skill_used(self, "BPSkill")
+                            
+                            # 触发遗器套装技能效果（在伤害结算前）
+                            if hasattr(self, 'relic_set_skills') and self.relic_set_skills:
+                                for skill_instance in self.relic_set_skills:
+                                    skill_instance.on_skill_used(self, "BPSkill")
+                            
+                            # 使用技能（Buff会在技能内部应用）
+                            if hasattr(self, 'skill_manager') and self.skill_manager is not None:
+                                self.skill_manager.use_skill(getattr(skill, 'skill_id', ''), self, [target], battle_context, level=max_level)
+                            else:
+                                skill.use(self, [target], battle_context, level=max_level)
+                            
+                            # 战技回复能量
                             self.on_skill_used("BPSkill")
                         else:
                             print(f"{self.name} 没有可攻击的目标。")
@@ -319,34 +349,73 @@ class Character:
                         print(f"{self.name} 没有可攻击的目标。")
             else:
                 # 普通攻击
-                enemies = [c for c in battle_context.characters if c.side != self.side and c.is_alive()]
-                if enemies:
-                    target = random.choice(enemies)
-                    max_level = getattr(skill, 'max_level', 1)
-                    print(f"{self.name} 使用普通攻击 [{getattr(skill, 'name', str(skill))}] 攻击 {target.name}")
-                    # 记录技能类型
-                    self.set_last_skill_type("Normal")
-                    
-                    # 触发光锥技能效果（在伤害结算前）
-                    if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
-                        self.light_cone.skill_instance.on_skill_used(self, "Normal")
-                    
-                    # 触发遗器套装技能效果（在伤害结算前）
-                    if hasattr(self, 'relic_set_skills') and self.relic_set_skills:
-                        for skill_instance in self.relic_set_skills:
-                            skill_instance.on_skill_used(self, "Normal")
-                    
-                    # 使用技能（Buff会在技能内部应用）
-                    if hasattr(self, 'skill_manager') and self.skill_manager is not None:
-                        self.skill_manager.use_skill(getattr(skill, 'skill_id', ''), self, [target], battle_context, level=max_level)
+                # 检查是否为治疗技能
+                is_heal_skill = (skill_id == "110502" or  # Natasha治疗技能
+                               getattr(skill, 'type', '') == 'Heal' or
+                               'heal' in getattr(skill, 'name', '').lower())
+                
+                if is_heal_skill:
+                    # 治疗技能选择队友作为目标
+                    allies = [c for c in battle_context.characters if c.side == self.side and c.is_alive()]
+                    if allies:
+                        # 优先选择血量最低的队友
+                        allies.sort(key=lambda c: c.hp / max(1, c.get_max_hp()))
+                        target = allies[0]
+                        max_level = getattr(skill, 'max_level', 1)
+                        print(f"{self.name} 使用普通攻击 [{getattr(skill, 'name', str(skill))}] 治疗 {target.name}")
+                        # 记录技能类型
+                        self.set_last_skill_type("Normal")
+                        
+                        # 触发光锥技能效果（在伤害结算前）
+                        if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
+                            self.light_cone.skill_instance.on_skill_used(self, "Normal")
+                        
+                        # 触发遗器套装技能效果（在伤害结算前）
+                        if hasattr(self, 'relic_set_skills') and self.relic_set_skills:
+                            for skill_instance in self.relic_set_skills:
+                                skill_instance.on_skill_used(self, "Normal")
+                        
+                        # 使用技能（Buff会在技能内部应用）
+                        if hasattr(self, 'skill_manager') and self.skill_manager is not None:
+                            self.skill_manager.use_skill(getattr(skill, 'skill_id', ''), self, [target], battle_context, level=max_level)
+                        else:
+                            skill.use(self, [target], battle_context, level=max_level)
+                        # 普通攻击回复战技点
+                        battle_context.gain_skill_point(self)
+                        # 普通攻击回复能量
+                        self.on_skill_used("Normal")
                     else:
-                        skill.use(self, [target], battle_context, level=max_level)
-                    # 普通攻击回复战技点
-                    battle_context.gain_skill_point(self)
-                    # 普通攻击回复能量
-                    self.on_skill_used("Normal")
+                        print(f"{self.name} 没有可治疗的队友。")
                 else:
-                    print(f"{self.name} 没有可攻击的目标。")
+                    # 攻击技能选择敌人作为目标
+                    enemies = [c for c in battle_context.characters if c.side != self.side and c.is_alive()]
+                    if enemies:
+                        target = random.choice(enemies)
+                        max_level = getattr(skill, 'max_level', 1)
+                        print(f"{self.name} 使用普通攻击 [{getattr(skill, 'name', str(skill))}] 攻击 {target.name}")
+                        # 记录技能类型
+                        self.set_last_skill_type("Normal")
+                        
+                        # 触发光锥技能效果（在伤害结算前）
+                        if hasattr(self, 'light_cone') and self.light_cone and hasattr(self.light_cone, 'skill_instance') and self.light_cone.skill_instance:
+                            self.light_cone.skill_instance.on_skill_used(self, "Normal")
+                        
+                        # 触发遗器套装技能效果（在伤害结算前）
+                        if hasattr(self, 'relic_set_skills') and self.relic_set_skills:
+                            for skill_instance in self.relic_set_skills:
+                                skill_instance.on_skill_used(self, "Normal")
+                        
+                        # 使用技能（Buff会在技能内部应用）
+                        if hasattr(self, 'skill_manager') and self.skill_manager is not None:
+                            self.skill_manager.use_skill(getattr(skill, 'skill_id', ''), self, [target], battle_context, level=max_level)
+                        else:
+                            skill.use(self, [target], battle_context, level=max_level)
+                        # 普通攻击回复战技点
+                        battle_context.gain_skill_point(self)
+                        # 普通攻击回复能量
+                        self.on_skill_used("Normal")
+                    else:
+                        print(f"{self.name} 没有可攻击的目标。")
         else:
             # 没有技能，进行基础普通攻击
             enemies = [c for c in battle_context.characters if c.side != self.side and c.is_alive()]
@@ -383,13 +452,18 @@ class Character:
         is_extra_turn = self.is_in_extra_turn()
         
         for buff in self.buffs:
-            if hasattr(buff, 'freshly_added') and buff.freshly_added:
+            # 只有角色给自己施加的Buff才享受首回合保护
+            if hasattr(buff, 'freshly_added') and buff.freshly_added and getattr(buff, 'self_buff', False):
                 buff.freshly_added = False
                 continue
             
             # 在额外回合中，Resurgence Enhanced State Buff的回合数不减少
             if is_extra_turn and buff.name == "Resurgence Enhanced State":
                 print(f"[特殊回合] {self.name} 在额外回合中，{buff.name} 回合数不减少 (剩余{buff.duration}回合)")
+                continue
+            
+            # 永久Buff（duration = -1）不减少持续时间
+            if buff.duration == -1:
                 continue
                 
             if buff.duration > 0:
@@ -421,14 +495,7 @@ class Character:
         old_hp = self.hp
         self.hp = min(self.hp + amount, max_hp)
         healed = self.hp - old_hp
-        # 优化来源显示
-        if hasattr(source, 'name'):
-            source_str = source.name
-        elif isinstance(source, str):
-            source_str = source
-        else:
-            source_str = '未知'
-        print(f"[治疗] {self.name} 回复了 {healed:.1f} 点生命值（来源: {source_str})，当前HP: {self.show_hp()}")
+        print(f"[治疗] {self.name} 回复了 {healed:.1f} 点生命值（来源: {source if source else '未知'})，当前HP: {self.show_hp()}")
         # 可扩展：被治疗加成、触发被动等
 
     @staticmethod
@@ -486,7 +553,11 @@ class Character:
         print(f"[Buff状态] {self.name} 当前Buff:")
         for buff in self.buffs:
             # 显示Buff详细信息
-            buff_info = [f"  - {buff.name} (剩余{buff.duration}回合)"]
+            if buff.duration == -1:
+                duration_text = "永久"
+            else:
+                duration_text = f"剩余{buff.duration}回合"
+            buff_info = [f"  - {buff.name} ({duration_text})"]
             
             # 显示属性加成
             if hasattr(buff, 'stat_bonus') and buff.stat_bonus:

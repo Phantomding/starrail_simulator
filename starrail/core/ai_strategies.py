@@ -169,7 +169,7 @@ def natasha_smart_ai(character) -> Optional[BaseSkill]:
             if ally.hp < ally.get_max_hp():
                 need_heal = True
                 break
-    # 优先使用战技
+    # 优先使用战技（如果有战技点且有队友受伤）
     if can_use_skill and skill and need_heal:
         return skill
     # 否则使用普攻
@@ -177,10 +177,9 @@ def natasha_smart_ai(character) -> Optional[BaseSkill]:
         return basic_skill
     return character.skills[0] if character.skills else None
 
-def select_heal_targets(character, battle_context, skill=None) -> list:
+def natasha_select_heal_targets(character, battle_context, skill) -> list:
     """
-    通用奶妈目标选择方法：优先选择己方血量百分比最低且未满的队友。
-    如果没有受伤队友则选择自己。
+    选择治疗目标：优先选择我方血量最低且未满的队友
     """
     if not battle_context:
         return [character]
@@ -190,6 +189,3 @@ def select_heal_targets(character, battle_context, skill=None) -> list:
     # 按血量百分比升序排序
     allies.sort(key=lambda c: c.hp / max(1, c.get_max_hp()))
     return [allies[0]] 
-
-# 保留natasha_select_heal_targets作为select_heal_targets的别名，兼容旧调用
-natasha_select_heal_targets = select_heal_targets 

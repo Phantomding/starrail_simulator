@@ -135,6 +135,8 @@ class InTheNightSkill(LightConeSkill):
             # 普攻和战技：应用伤害加成
             dmg_buff = self._create_skill_dmg_buff(character)
             if dmg_buff and hasattr(character, 'add_buff'):
+                # 光锥Buff是角色自己的装备提供的，应该享受首回合保护
+                dmg_buff.self_buff = True
                 character.add_buff(dmg_buff)
                 stacks = self._get_current_stacks(character)
                 print(f"[光锥效果] {character.name} 使用{skill_type}，获得伤害加成 (层数: {stacks})")
@@ -143,6 +145,8 @@ class InTheNightSkill(LightConeSkill):
             # 终极技：应用暴击伤害加成
             crit_buff = self._create_ult_crit_dmg_buff(character)
             if crit_buff and hasattr(character, 'add_buff'):
+                # 光锥Buff是角色自己的装备提供的，应该享受首回合保护
+                crit_buff.self_buff = True
                 character.add_buff(crit_buff)
                 stacks = self._get_current_stacks(character)
                 print(f"[光锥效果] {character.name} 使用终极技，获得暴击伤害加成 (层数: {stacks})")

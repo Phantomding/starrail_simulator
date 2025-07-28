@@ -1,10 +1,7 @@
-# skill_manager.py - 重构版本
 from .skill import get_skill_instance
 from .buff import Buff
 import random
 from starrail.core.enemy import Enemy
-from starrail.core.skills.damage_system import DamageCalculator, DamageType
-from typing import Dict
 
 def damage_calc_attack_side(user, target, multiplier, element):
     """攻击方修正：返回理论伤害和暴击信息"""
@@ -101,13 +98,12 @@ def break_damage_calc(attacker, target, break_damage, element):
 class SkillManager:
     def __init__(self, skill_data_dict):
         self.skill_data_dict = skill_data_dict
-        # 技能类型对应的削韧值
-        self.toughness_damage_map = {"Normal": 10, "BPSkill": 20, "Ultra": 30}
 
     def use_skill(self, skill_id, user, targets, context, level=1):
         skill_data = self.skill_data_dict[skill_id]
         skill = get_skill_instance(skill_id, skill_data)
         intent = skill.use(user, targets, context, level)
+        results = []
         
         # 获取技能类型用于能量回复
         skill_type = skill_data.get("type", "Normal")
@@ -116,89 +112,215 @@ class SkillManager:
         if hasattr(user, 'set_last_skill_type'):
             user.set_last_skill_type(skill_type)
         
-        # 统一的处理分发
-        handler_map = {
-            "damage_only": self._handle_damage_only,
-            "buff_only": self._handle_buff_only,
-            "damage_before_buff": self._handle_damage_before_buff,
-            "buff_before_damage": self._handle_buff_before_damage,
-            "talent_enhance": self._handle_talent_enhance,
-            "damage_with_progress_boost": self._handle_damage_with_progress_boost,
-            "heal_only": self._handle_heal_only,
-            "skip": self._handle_skip
-        }
-        
-        handler = handler_map.get(intent["type"])
-        if handler:
-            return handler(user, targets, intent, skill_type)
-        else:
-            print(f"[警告] 未知的技能类型: {intent['type']}")
-            return []
+        # 处理不同类型的技能
+        if intent["type"] == "damage_only":
+            # 纯伤害技能
+            results = self._handle_damage_only(user, targets, intent, skill_type)
+            
+        elif intent["type"] == "buff_only":
+            # 纯Buff技能
+            results = self._handle_buff_only(user, targets, intent)
+            
+        elif intent["type"] == "damage_before_buff":
+            # 先伤害后Buff（适用于需要先造成伤害再提供Buff的技能）
+            results = self._handle_damage_before_buff(user, targets, intent, skill_type)
+            
+        elif intent["type"] == "buff_before_damage":
+            # 先Buff后伤害（适用于需要先提供Buff再造成伤害的技能）
+            results = self._handle_buff_before_damage(user, targets, intent, skill_type)
+            
+        elif intent["type"] == "talent_enhance":
+            # 天赋强化效果
+            results = self._handle_talent_enhance(user, intent)
+            
+        elif intent["type"] == "damage_with_progress_boost":
+            # 伤害+行动进度提升技能
+            results = self._handle_damage_with_progress_boost(user, targets, intent, skill_type)
+            
+        elif intent["type"] == "heal_only":
+            # 强制治疗类技能只能选择己方目标
+            targets = [t for t in targets if t.side == user.side]
+            if not targets:
+                targets = [user]  # 至少治疗自己
+            results = self._handle_heal_only(user, targets, intent)
+            
+        elif intent["type"] == "heal_before_buff":
+            # 先治疗后Buff的混合技能，只能选择己方目标
+            targets = [t for t in targets if t.side == user.side]
+            if not targets:
+                targets = [user]  # 至少治疗自己
+            results = self._handle_heal_before_buff(user, targets, intent)
+            
+        elif intent["type"] == "skip":
+            print(f"[技能跳过] {user.name} 使用了未实装技能 [{intent.get('skill_name', skill_id)}]，本回合跳过。")
+            
+        # 其他类型如治疗等可扩展
+        return results
 
-    # ===== 公共逻辑提取 =====
-    
-    def _apply_damage_to_target(self, user, target, multiplier, element, skill_type, skill_name="Unknown"):
-        """统一的伤害处理逻辑"""
-        dmg = damage_calc(user, target, multiplier, element)
-        target_was_alive = target.is_alive()
-        
-        # 造成伤害
-        if hasattr(target, "receive_damage"):
-            target.receive_damage(dmg, attacker=user, skill_type=skill_type)
-        
-        # 削韧（仅对Enemy）
-        if isinstance(target, Enemy):
-            toughness_amount = self.toughness_damage_map.get(skill_type, 0)
-            if toughness_amount > 0:
-                target.reduce_toughness(toughness_amount, element=element, attacker=user)
-        
-        # 击杀检查
-        if target_was_alive and not target.is_alive():
-            user.on_enemy_killed()
-        
-        return {
-            "target": target,
-            "damage": dmg,
-            "element": element,
-            "skill_name": skill_name,
-            "result_type": "damage"
-        }
-    
-    def _apply_buff_to_target(self, target, buff, skill_name="Unknown"):
-        """统一的Buff应用逻辑"""
-        if not buff or not hasattr(target, "add_buff"):
-            return None
+    def _handle_damage_only(self, user, targets, intent, skill_type):
+        """处理纯伤害技能"""
+        results = []
+        # 削韧值设定
+        toughness_map = {"Normal": 10, "BPSkill": 20, "Ultra": 30}
+        for target in targets:
+            dmg = damage_calc(user, target, intent["multiplier"], intent["element"])
+            target_was_alive = target.is_alive()
+            if hasattr(target, "receive_damage"):
+                target.receive_damage(dmg, attacker=user, skill_type=skill_type)
+            # 仅对Enemy削韧
+            if isinstance(target, Enemy):
+                toughness_amount = toughness_map.get(skill_type, 0)
+                target.reduce_toughness(toughness_amount, element=intent.get("element"), attacker=user)
+            # 检查是否击杀
+            if target_was_alive and not target.is_alive():
+                user.on_enemy_killed()
+            results.append({
+                "target": target,
+                "damage": dmg,
+                "element": intent["element"],
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
+        return results
+
+    def _handle_buff_only(self, user, targets, intent):
+        """处理纯Buff技能"""
+        results = []
+        for target in targets:
+            if hasattr(target, "add_buff") and intent.get("buff"):
+                buff = intent["buff"]
+                # 设置Buff的self_buff属性
+                buff.self_buff = (target == user)  # 只有目标是自己时才设为self_buff
+                target.add_buff(buff)
+                print(f"[Buff应用] {target.name} 获得Buff: {buff.name} (持续{buff.duration}回合)")
             
-        target.add_buff(buff)
-        print(f"[Buff应用] {target.name} 获得Buff: {buff.name} (持续{buff.duration}回合)")
+            results.append({
+                "target": target,
+                "buff": intent.get("buff"),
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
+        return results
+
+    def _handle_damage_before_buff(self, user, targets, intent, skill_type):
+        """处理先伤害后Buff的技能（适用于需要先造成伤害再提供Buff的技能）"""
+        results = []
+        # 削韧值设定
+        toughness_map = {"Normal": 10, "BPSkill": 20, "Ultra": 30}
+        for target in targets:
+            dmg = damage_calc(user, target, intent["multiplier"], intent["element"])
+            target_was_alive = target.is_alive()
+            if hasattr(target, "receive_damage"):
+                target.receive_damage(dmg, attacker=user, skill_type=skill_type)
+            if isinstance(target, Enemy):
+                toughness_amount = toughness_map.get(skill_type, 0)
+                target.reduce_toughness(toughness_amount, element=intent.get("element"), attacker=user)
+            # 检查是否击杀
+            if target_was_alive and not target.is_alive():
+                user.on_enemy_killed()
+            # 再应用Buff
+            if hasattr(target, "add_buff") and intent.get("buff"):
+                buff = intent["buff"]
+                # 设置Buff的self_buff属性
+                buff.self_buff = (target == user)  # 只有目标是自己时才设为self_buff
+                target.add_buff(buff)
+                print(f"[Buff应用] {target.name} 获得Buff: {buff.name} (持续{buff.duration}回合)")
+            results.append({
+                "target": target,
+                "damage": dmg,
+                "element": intent["element"],
+                "buff": intent.get("buff"),
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
+        return results
+
+    def _handle_buff_before_damage(self, user, targets, intent, skill_type):
+        """处理先Buff后伤害的技能（适用于需要先提供Buff再造成伤害的技能）"""
+        results = []
+        # 削韧值设定
+        toughness_map = {"Normal": 10, "BPSkill": 20, "Ultra": 30}
+        buff_target = intent.get("buff_target", user)
+        if hasattr(buff_target, "add_buff") and intent.get("buff"):
+            buff = intent["buff"]
+            # 设置Buff的self_buff属性
+            buff.self_buff = (buff_target == user)  # 只有目标是自己时才设为self_buff
+            buff_target.add_buff(buff)
+            print(f"[Buff应用] {buff_target.name} 获得Buff: {buff.name} (持续{buff.duration}回合)")
+        for target in targets:
+            dmg = damage_calc(user, target, intent["multiplier"], intent["element"])
+            target_was_alive = target.is_alive()
+            if hasattr(target, "receive_damage"):
+                target.receive_damage(dmg, attacker=user, skill_type=skill_type)
+            if isinstance(target, Enemy):
+                toughness_amount = toughness_map.get(skill_type, 0)
+                target.reduce_toughness(toughness_amount, element=intent.get("element"), attacker=user)
+            # 检查是否击杀
+            if target_was_alive and not target.is_alive():
+                user.on_enemy_killed()
+            results.append({
+                "target": target,
+                "damage": dmg,
+                "element": intent["element"],
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
+        return results
+
+    def _handle_talent_enhance(self, user, intent):
+        """处理天赋强化效果"""
+        results = []
+        buff_target = intent.get("buff_target", user)
+        if hasattr(buff_target, "add_buff") and intent.get("buff"):
+            buff = intent["buff"]
+            # 设置Buff的self_buff属性
+            buff.self_buff = (buff_target == user)  # 只有目标是自己时才设为self_buff
+            buff_target.add_buff(buff)
+            print(f"[天赋触发] {buff_target.name} 获得Buff: {buff.name} (持续{buff.duration}回合)")
         
-        return {
-            "target": target,
-            "buff": buff,
-            "skill_name": skill_name,
-            "result_type": "buff"
-        }
-    
-    def _apply_heal_to_target(self, target, heal_amount, skill_name="Unknown"):
-        """统一的治疗逻辑"""
-        if not hasattr(target, "heal"):
-            return None
-            
-        target.heal(heal_amount, source=skill_name)
+        # 检查是否需要额外回合
+        if intent.get("extra_turn", False):
+            print(f"[额外回合] {user.name} 获得额外回合！")
+            # 标记需要额外回合
+            if hasattr(user, 'set_extra_turn'):
+                user.set_extra_turn(True)
         
-        return {
-            "target": target,
-            "heal": heal_amount,
-            "skill_name": skill_name,
-            "result_type": "heal"
-        }
-    
-    def _handle_action_progress_boost(self, user, intent):
-        """统一的行动进度提升处理"""
+        results.append({
+            "target": buff_target,
+            "buff": intent.get("buff"),
+            "extra_turn": intent.get("extra_turn", False),
+            "skill_name": intent["skill_name"],
+            "desc": intent["desc"]
+        })
+        return results
+
+    def _handle_damage_with_progress_boost(self, user, targets, intent, skill_type):
+        """处理伤害+行动进度提升技能"""
+        results = []
+        # 削韧值设定
+        toughness_map = {"Normal": 10, "BPSkill": 20, "Ultra": 30}
+        for target in targets:
+            dmg = damage_calc(user, target, intent["multiplier"], intent["element"])
+            target_was_alive = target.is_alive()
+            if hasattr(target, "receive_damage"):
+                target.receive_damage(dmg, attacker=user, skill_type=skill_type)
+            if isinstance(target, Enemy):
+                toughness_amount = toughness_map.get(skill_type, 0)
+                target.reduce_toughness(toughness_amount, element=intent.get("element"), attacker=user)
+            # 检查是否击杀
+            if target_was_alive and not target.is_alive():
+                user.on_enemy_killed()
+            results.append({
+                "target": target,
+                "damage": dmg,
+                "element": intent["element"],
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
+        # 再处理行动进度提升
         progress_target = intent.get("progress_target", user)
         progress_boost = intent.get("action_progress_boost", 0)
         boost_timing = intent.get("boost_timing", "current_turn")
-        
         if progress_boost > 0 and hasattr(progress_target, '_battle_context'):
             battle_context = progress_target._battle_context
             if hasattr(battle_context, 'boost_action_progress'):
@@ -208,194 +330,47 @@ class SkillManager:
                 else:
                     battle_context.boost_action_progress(progress_target, progress_boost)
                     print(f"[行动进度] {progress_target.name} 的行动进度提前了 {progress_boost*100:.0f}%")
-    
-    def _handle_extra_turn(self, user, intent):
-        """处理额外回合逻辑"""
-        if intent.get("extra_turn", False):
-            print(f"[额外回合] {user.name} 获得额外回合！")
-            if hasattr(user, 'set_extra_turn'):
-                user.set_extra_turn(True)
+        return results 
 
-    # ===== 简化后的处理函数 =====
-    
-    def _handle_damage_only(self, user, targets, intent, skill_type):
-        """处理纯伤害技能"""
-        results = []
-        multiplier = intent.get("multiplier", 1.0)
-        element = intent.get("element")
-        skill_name = intent.get("skill_name", "Unknown")
-        
-        for target in targets:
-            result = self._apply_damage_to_target(user, target, multiplier, element, skill_type, skill_name)
-            results.append(result)
-        
-        return results
-
-    def _handle_buff_only(self, user, targets, intent, skill_type):
-        """处理纯Buff技能"""
-        results = []
-        buff = intent.get("buff")
-        skill_name = intent.get("skill_name", "Unknown")
-        
-        for target in targets:
-            result = self._apply_buff_to_target(target, buff, skill_name)
-            if result:
-                results.append(result)
-        
-        return results
-
-    def _handle_buff_before_damage(self, user, targets, intent, skill_type):
-        """处理先Buff后伤害的技能"""
-        results = []
-        
-        # 先应用Buff
-        buff_target = intent.get("buff_target", user)
-        buff = intent.get("buff")
-        skill_name = intent.get("skill_name", "Unknown")
-        
-        if buff:
-            buff_result = self._apply_buff_to_target(buff_target, buff, skill_name)
-            if buff_result:
-                results.append(buff_result)
-        
-        # 再造成伤害
-        multiplier = intent.get("multiplier", 1.0)
-        element = intent.get("element")
-        
-        for target in targets:
-            damage_result = self._apply_damage_to_target(user, target, multiplier, element, skill_type, skill_name)
-            results.append(damage_result)
-        
-        return results
-
-    def _handle_damage_before_buff(self, user, targets, intent, skill_type):
-        """处理先伤害后Buff的技能"""
-        results = []
-        multiplier = intent.get("multiplier", 1.0)
-        element = intent.get("element")
-        buff = intent.get("buff")
-        skill_name = intent.get("skill_name", "Unknown")
-        
-        for target in targets:
-            # 先造成伤害
-            damage_result = self._apply_damage_to_target(user, target, multiplier, element, skill_type, skill_name)
-            results.append(damage_result)
-            
-            # 再应用Buff（如果有）
-            if buff:
-                buff_result = self._apply_buff_to_target(target, buff, skill_name)
-                if buff_result:
-                    results.append(buff_result)
-        
-        return results
-
-    def _handle_heal_only(self, user, targets, intent, skill_type):
+    def _handle_heal_only(self, user, targets, intent):
         """处理纯治疗技能"""
-        # 治疗技能强制只能选择己方目标
-        valid_targets = [t for t in targets if t.side == user.side]
-        if not valid_targets:
-            valid_targets = [user]  # 至少治疗自己
-        
         results = []
-        heal_amount = intent.get("heal_amount", 0)
-        skill_name = intent.get("skill_name", "Unknown")
-        
-        for target in valid_targets:
-            result = self._apply_heal_to_target(target, heal_amount, skill_name)
-            if result:
-                results.append(result)
-        
+        for target in targets:
+            heal_amount = intent["heal_amount"]
+            if hasattr(target, "heal"):
+                # 传递治疗者的名称而不是对象引用
+                target.heal(heal_amount, source=user.name)
+            results.append({
+                "target": target,
+                "heal": heal_amount,
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
         return results
 
-    def _handle_damage_with_progress_boost(self, user, targets, intent, skill_type):
-        """处理伤害+行动进度提升技能"""
-        # 先造成伤害
-        damage_results = self._handle_damage_only(user, targets, intent, skill_type)
-        
-        # 再处理行动进度提升
-        self._handle_action_progress_boost(user, intent)
-        
-        return damage_results
-
-    def _handle_talent_enhance(self, user, targets, intent, skill_type):
-        """处理天赋强化效果"""
+    def _handle_heal_before_buff(self, user, targets, intent):
+        """处理先治疗后Buff的混合技能"""
         results = []
-        
-        # 应用Buff
-        buff_target = intent.get("buff_target", user)
-        buff = intent.get("buff")
-        skill_name = intent.get("skill_name", "Unknown")
-        
-        if buff:
-            buff_result = self._apply_buff_to_target(buff_target, buff, skill_name)
-            if buff_result:
-                results.append(buff_result)
-        
-        # 处理额外回合
-        self._handle_extra_turn(user, intent)
-        
-        return results
-
-    def _handle_skip(self, user, targets, intent, skill_type):
-        """处理跳过技能"""
-        skill_name = intent.get("skill_name", "Unknown")
-        print(f"[技能跳过] {user.name} 使用了未实装技能 [{skill_name}]，本回合跳过。")
-        return []
-
-# 在SkillManager中集成新的伤害系统
-class SkillManagerWithNewDamage(SkillManager):
-    """集成新伤害系统的SkillManager"""
-    
-    def __init__(self, skill_data_dict):
-        super().__init__(skill_data_dict)
-        self.damage_calculator = DamageCalculator()
-    
-    def _apply_damage_to_target(self, user, target, intent, skill_type):
-        """使用新伤害系统的伤害处理"""
-        # 确定伤害类型
-        damage_type_map = {
-            "Normal": DamageType.NORMAL,
-            "BPSkill": DamageType.NORMAL,
-            "Ultra": DamageType.ULTIMATE,
-            "Talent": DamageType.FOLLOW_UP,
-            "Break": DamageType.BREAK
-        }
-        damage_type = damage_type_map.get(skill_type, DamageType.NORMAL)
-        
-        # 计算伤害
-        damage_instance = self.damage_calculator.calculate_damage(
-            user, target, intent["multiplier"], intent["element"], damage_type
-        )
-        
-        target_was_alive = target.is_alive()
-        
-        # 造成伤害
-        if hasattr(target, "receive_damage"):
-            target.receive_damage(
-                damage_instance.final_damage, 
-                attacker=user, 
-                skill_type=skill_type,
-                damage_instance=damage_instance
-            )
-        
-        # 削韧（仅对Enemy）
-        if isinstance(target, Enemy):
-            toughness_amount = self.toughness_map.get(skill_type, 0)
-            target.reduce_toughness(toughness_amount, element=intent.get("element"), attacker=user)
-        
-        # 击杀检查
-        if target_was_alive and not target.is_alive():
-            user.on_enemy_killed()
-        
-        return {
-            "target": target,
-            "damage": damage_instance.final_damage,
-            "damage_instance": damage_instance,
-            "element": intent["element"],
-            "skill_name": intent["skill_name"],
-            "desc": intent.get("desc", "")
-        }
-    
-    def get_battle_damage_report(self) -> Dict:
-        """获取战斗伤害报告"""
-        return self.damage_calculator.get_damage_statistics()
+        for target in targets:
+            # 先进行治疗
+            heal_amount = intent["heal_amount"]
+            if hasattr(target, "heal"):
+                # 传递治疗者的名称而不是对象引用
+                target.heal(heal_amount, source=user.name)
+            
+            # 再应用Buff
+            if hasattr(target, "add_buff") and intent.get("buff"):
+                buff = intent["buff"]
+                # 设置Buff的self_buff属性
+                buff.self_buff = (target == user)  # 只有目标是自己时才设为self_buff
+                target.add_buff(buff)
+                print(f"[Buff应用] {target.name} 获得Buff: {buff.name} (持续{buff.duration}回合)")
+            
+            results.append({
+                "target": target,
+                "heal": heal_amount,
+                "buff": intent.get("buff"),
+                "skill_name": intent["skill_name"],
+                "desc": intent["desc"]
+            })
+        return results 

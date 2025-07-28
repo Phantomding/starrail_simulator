@@ -91,6 +91,8 @@ class SpaceSealingStationSkill(RelicSetSkill):
                 source="relic_set",
                 level=self.level
             )
+            # 遗器套装Buff是角色自己的装备提供的，应该享受首回合保护
+            extra_atk_buff.self_buff = True
             effects.append(extra_atk_buff)
         
         return effects

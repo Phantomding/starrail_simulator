@@ -4,7 +4,7 @@ from typing import Callable, Any, Optional, Dict, List
 class Buff:
     def __init__(self, name: str, duration: int, apply_effect: Optional[Callable] = None, remove_effect: Optional[Callable] = None, stat_bonus: Optional[Dict[str, float]] = None, damage_bonus: float = 0, element_penetration: float = 0, stackable: bool = False):
         self.name = name
-        self.duration = duration  # 持续回合数
+        self.duration = duration  # 持续回合数（-1表示永久）
         self.apply_effect = apply_effect  # 可选，应用时触发
         self.remove_effect = remove_effect  # 可选，移除时触发
         self.stat_bonus = stat_bonus or {}  # 直接加成属性
@@ -14,6 +14,7 @@ class Buff:
         self.freshly_added = False  # 新增，首回合不扣减
         self.source = None  # 来源（技能、天赋等）
         self.level = 1  # 技能等级
+        self.self_buff = False  # 是否为角色给自己施加的Buff（享受首回合保护）
 
     def on_apply(self, character):
         if self.apply_effect:
@@ -123,6 +124,10 @@ class Buff:
         """
         创建技能Buff的便捷方法
         """
+        # 如果没有指定持续时间，设为永久
+        if duration is None or duration == 0:
+            duration = -1
+        
         buff = Buff(name=name, duration=duration, stat_bonus=stat_bonus, damage_bonus=damage_bonus, element_penetration=element_penetration)
         buff.source = source
         buff.level = level
