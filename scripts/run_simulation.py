@@ -64,8 +64,23 @@ if __name__ == '__main__':
     # 初始化血量
     for c in all_chars:
         c.hp = c.get_max_hp()
+    
+    # 测试Natasha天赋效果：降低Seele生命值到30%以下
+    for c in all_chars:
+        if c.name.lower() in ["seele", "希儿"]:
+            # 降低生命值到25%来确保存活并测试天赋效果
+            c.hp = c.get_max_hp() * 0.25
+            print(f"[测试设置] {c.name} 生命值降低到 {c.hp:.0f}/{c.get_max_hp():.0f} (25%) 以测试Natasha天赋效果")
+    
+    # 修改敌人AI，让它们优先攻击Natasha而不是Seele
+    for c in all_chars:
+        if c.side == "enemy":
+            # 设置敌人AI策略，优先攻击Natasha
+            c.ai_strategy = "focus_natasha"
+            print(f"[测试设置] {c.name} AI策略设置为优先攻击Natasha")
+    
     battle = Battle(all_chars)
-    battle.run(max_turns=8)  # 增加回合数以观察Buff效果
+    battle.run(max_turns=5)  # 增加回合数以观察Buff效果
     
     # 战斗结束后显示角色当前属性
     print('\n===== 战斗结束后的角色属性 =====')
