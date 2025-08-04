@@ -1,6 +1,13 @@
 # ai_strategies.py
+import random
 from typing import Optional, List
 from .skills.base_skill import BaseSkill
+
+# 前向声明以支持类型提示
+if False:
+    from .character import Character
+    from .battle import Battle
+
 
 def seele_smart_ai(character) -> Optional[BaseSkill]:
     """
@@ -188,4 +195,41 @@ def natasha_select_heal_targets(character, battle_context, skill) -> list:
         return [character]  # 没有队友受伤则给自己
     # 按血量百分比升序排序
     allies.sort(key=lambda c: c.hp / max(1, c.get_max_hp()))
-    return [allies[0]] 
+    return [allies[0]]
+
+# --- 新增布洛妮娅 AI ---
+def bronya_simple_ai(character: 'Character') -> Optional[BaseSkill]:
+    """
+    布洛妮娅的简易AI策略:
+    1. 如果有战技点，70%概率用战技，30%用普攻。
+    2. 如果没有战技点，用普攻。
+    """
+    battle_context = getattr(character, '_battle_context', None)
+    can_use_skill = battle_context.can_use_skill(character) if battle_context else False
+
+    skill = next((s for s in character.skills if getattr(s, 'skill_id', '') == "110102"), None)
+    basic_skill = next((s for s in character.skills if getattr(s, 'skill_id', '') == "110101"), None)
+
+    if can_use_skill and skill and random.random() < 0.7:
+        return skill
+    
+    return basic_skill or (character.skills[0] if character.skills else None)
+
+def bronya_should_cast_ultimate(character: 'Character', battle_context: 'Battle') -> bool:
+    """
+    布洛妮娅终结技释放策略：能量满了就放。
+    """
+    return character.can_use_ultimate()
+# --- 新增结束 ---
+
+def enemy_default_ai(character) -> Optional[BaseSkill]:
+    """
+    敌人的默认AI策略：
+    1. 如果有技能，随机选择一个技能
+    2. 如果没有技能，使用默认攻击
+    """
+    if not character.skills:
+        from .skills.base_skill import BaseSkill
+        return BaseSkill.create_default_attack(character)
+    
+    return random.choice(character.skills)

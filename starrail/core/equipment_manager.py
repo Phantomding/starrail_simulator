@@ -3,6 +3,153 @@ import os
 import json
 from starrail.core.relics.relic_set_skill import RelicSetSkillFactory
 
+class RelicManager:
+    """遗器管理器 - 提供遗器筛选、套装管理、推荐等功能"""
+    
+    def __init__(self, relics_data):
+        self.relics = relics_data
+        self.relics_by_slot = self._organize_relics_by_slot()
+        self.relics_by_set = self._organize_relics_by_set()
+    
+    def _organize_relics_by_slot(self):
+        """按部位组织遗器"""
+        organized = {
+            "Head": [],
+            "Hands": [],
+            "Body": [],
+            "Feet": [],
+            "PlanarSphere": [],
+            "LinkRope": []
+        }
+        for relic in self.relics.values():
+            if hasattr(relic, 'slot') and relic.slot in organized:
+                organized[relic.slot].append(relic)
+        return organized
+    
+    def _organize_relics_by_set(self):
+        """按套装组织遗器"""
+        organized = {}
+        for relic in self.relics.values():
+            if hasattr(relic, 'set_name') and relic.set_name:
+                if relic.set_name not in organized:
+                    organized[relic.set_name] = []
+                organized[relic.set_name].append(relic)
+        return organized
+    
+    def get_relics_by_slot(self, slot):
+        """获取指定部位的所有遗器"""
+        return self.relics_by_slot.get(slot, [])
+    
+    def get_relics_by_set(self, set_name):
+        """获取指定套装的所有遗器"""
+        return self.relics_by_set.get(set_name, [])
+    
+    def get_relics_by_main_stat(self, slot, main_stat):
+        """获取指定部位和主属性的遗器"""
+        relics = self.get_relics_by_slot(slot)
+        return [r for r in relics if hasattr(r, 'main_stat') and r.main_stat.get('stat') == main_stat]
+    
+    def get_relics_by_sub_stats(self, slot, sub_stats):
+        """获取指定部位和副属性的遗器"""
+        relics = self.get_relics_by_slot(slot)
+        matching_relics = []
+        for relic in relics:
+            if hasattr(relic, 'sub_stats'):
+                relic_sub_stats = [sub.get('stat') for sub in relic.sub_stats if sub.get('stat')]
+                if all(stat in relic_sub_stats for stat in sub_stats):
+                    matching_relics.append(relic)
+        return matching_relics
+    
+    def get_best_relics_for_character(self, character, slot, priority_stats=None):
+        """为角色推荐指定部位的最佳遗器"""
+        if priority_stats is None:
+            # 根据角色类型设置默认优先级
+            if hasattr(character, 'path'):
+                if character.path == "Hunt":
+                    priority_stats = ["CRIT DMG", "CRIT Rate", "ATK%", "SPD"]
+                elif character.path == "Destruction":
+                    priority_stats = ["CRIT DMG", "CRIT Rate", "ATK%", "HP%"]
+                elif character.path == "Harmony":
+                    priority_stats = ["SPD", "Effect Hit Rate", "HP%", "DEF%"]
+                elif character.path == "Nihility":
+                    priority_stats = ["Effect Hit Rate", "SPD", "ATK%", "HP%"]
+                elif character.path == "Preservation":
+                    priority_stats = ["DEF%", "HP%", "Effect RES", "SPD"]
+                elif character.path == "Abundance":
+                    priority_stats = ["HP%", "Outgoing Healing Boost", "SPD", "Effect RES"]
+                else:
+                    priority_stats = ["ATK%", "CRIT DMG", "CRIT Rate", "SPD"]
+            else:
+                priority_stats = ["ATK%", "CRIT DMG", "CRIT Rate", "SPD"]
+        
+        relics = self.get_relics_by_slot(slot)
+        scored_relics = []
+        
+        for relic in relics:
+            score = 0
+            # 主属性评分
+            if hasattr(relic, 'main_stat'):
+                main_stat = relic.main_stat.get('stat')
+                if main_stat in priority_stats:
+                    score += priority_stats.index(main_stat) * 10
+            
+            # 副属性评分
+            if hasattr(relic, 'sub_stats'):
+                for sub_stat in relic.sub_stats:
+                    stat_name = sub_stat.get('stat')
+                    if stat_name in priority_stats:
+                        score += (len(priority_stats) - priority_stats.index(stat_name)) * 2
+            
+            scored_relics.append((relic, score))
+        
+        # 按评分排序
+        scored_relics.sort(key=lambda x: x[1], reverse=True)
+        return [relic for relic, score in scored_relics]
+    
+    def get_set_recommendations(self, character):
+        """为角色推荐遗器套装"""
+        recommendations = []
+        
+        if hasattr(character, 'path'):
+            if character.path == "Hunt":
+                recommendations.extend([
+                    ("Eagle of Twilight Line", "暴击和速度加成，适合输出角色"),
+                    ("Inert Salsotto", "暴击和暴击伤害加成"),
+                    ("Rutilant Arena", "暴击和技能伤害加成")
+                ])
+            elif character.path == "Destruction":
+                recommendations.extend([
+                    ("The Ashblazing Grand Duke", "暴击和暴击伤害加成"),
+                    ("Inert Salsotto", "暴击和暴击伤害加成"),
+                    ("Rutilant Arena", "暴击和技能伤害加成")
+                ])
+            elif character.path == "Harmony":
+                recommendations.extend([
+                    ("Messenger Traversing Hackerspace", "速度和团队增益"),
+                    ("Fleet of the Ageless", "速度和团队增益"),
+                    ("Broken Keel", "效果抵抗和团队增益")
+                ])
+            elif character.path == "Nihility":
+                recommendations.extend([
+                    ("Pioneer Diver of Dead Waters", "效果命中和伤害加成"),
+                    ("Thief of Shooting Meteor", "效果命中和击破效率"),
+                    ("Pan-Cosmic Commercial Enterprise", "效果命中和团队增益")
+                ])
+            elif character.path == "Preservation":
+                recommendations.extend([
+                    ("Guard of Wuthering Snow", "防御和护盾加成"),
+                    ("Belobog of the Architects", "防御和护盾加成"),
+                    ("Broken Keel", "效果抵抗和团队增益")
+                ])
+            elif character.path == "Abundance":
+                recommendations.extend([
+                    ("Passerby of Wandering Cloud", "治疗效果加成"),
+                    ("Fleet of the Ageless", "速度和团队增益"),
+                    ("Broken Keel", "效果抵抗和团队增益")
+                ])
+        
+        return recommendations
+
 def equip_light_cone(character, light_cone):
     character.light_cone = light_cone
 
@@ -55,7 +202,7 @@ def calc_total_stats(character):
     # 光锥百分比属性
     if hasattr(character, 'light_cone') and character.light_cone and hasattr(character.light_cone, 'stats'):
         for k, v in character.light_cone.stats.items():
-            if k in percent_fields or k.endswith("%"):
+            if k in percent_fields or k.endswith("%") or k.endswith("DMG") or k.endswith("DMG Boost"):
                 percent_stats[k] = percent_stats.get(k, 0) + (v / 100 if v > 1 else v)
     
     # 光锥技能效果（需要命途匹配）
@@ -81,7 +228,7 @@ def calc_total_stats(character):
             for k, v in relic.main_stat.items():
                 if k in ["HP", "ATK", "DEF", "SPD"]:
                     flat_bonus[k] = flat_bonus.get(k, 0) + v
-                elif k in percent_fields or k.endswith("%"):
+                elif k in percent_fields or k.endswith("%") or k.endswith("DMG") or k.endswith("DMG Boost"):
                     percent_stats[k] = percent_stats.get(k, 0) + (v / 100 if v > 1 else v)
                 else:
                     base_stats[k] = base_stats.get(k, 0) + v
@@ -93,7 +240,7 @@ def calc_total_stats(character):
                     if subk and subv is not None:
                         if subk in ["HP", "ATK", "DEF", "SPD"]:
                             flat_bonus[subk] = flat_bonus.get(subk, 0) + subv
-                        elif subk in percent_fields or subk.endswith("%"):
+                        elif subk in percent_fields or subk.endswith("%") or subk.endswith("DMG") or subk.endswith("DMG Boost"):
                             percent_stats[subk] = percent_stats.get(subk, 0) + (subv / 100 if subv > 1 else subv)
                         else:
                             base_stats[subk] = base_stats.get(subk, 0) + subv

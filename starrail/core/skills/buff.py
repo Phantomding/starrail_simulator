@@ -1,105 +1,100 @@
-# buff.py
-from typing import Callable, Any, Optional, Dict, List
+# starrail/core/skills/buff.py (已修正)
+from typing import Optional, Dict, Any, List, Callable
+
+# 为了类型提示
+if False:
+    from starrail.core.character import Character
 
 class Buff:
-    def __init__(self, name: str, duration: int, apply_effect: Optional[Callable] = None, remove_effect: Optional[Callable] = None, stat_bonus: Optional[Dict[str, float]] = None, damage_bonus: float = 0, element_penetration: float = 0, stackable: bool = False):
+    # 静态变量控制动态属性日志输出
+    _show_dynamic_stats_log = True
+    _dynamic_stats_logged = set()  # 记录已输出的Buff名称
+    
+    def __init__(self, name: str, duration: int, stat_bonus: Optional[Dict[str, float]] = None, damage_bonus: float = 0, element_penetration: float = 0, stackable: bool = False, dynamic_stat_bonus_func: Optional[Callable[['Character'], Dict[str, float]]] = None, dynamic_damage_bonus_func: Optional[Callable[['Character'], float]] = None):
         self.name = name
-        self.duration = duration  # 持续回合数（-1表示永久）
-        self.apply_effect = apply_effect  # 可选，应用时触发
-        self.remove_effect = remove_effect  # 可选，移除时触发
-        self.stat_bonus = stat_bonus or {}  # 直接加成属性
-        self.damage_bonus = damage_bonus  # 独立的增伤区
-        self.element_penetration = element_penetration  # 属性穿透
-        self.stackable = stackable  # 是否可叠加
-        self.freshly_added = False  # 新增，首回合不扣减
-        self.source = None  # 来源（技能、天赋等）
-        self.level = 1  # 技能等级
-        self.self_buff = False  # 是否为角色给自己施加的Buff（享受首回合保护）
-
-    def on_apply(self, character):
-        if self.apply_effect:
-            self.apply_effect(character)
-
-    def on_remove(self, character):
-        if self.remove_effect:
-            self.remove_effect(character)
-
-    def on_turn_start(self, character):
-        # 每回合开始时触发，可扩展
-        pass
-
-    def on_turn_end(self, character):
-        # 每回合结束时触发，可扩展
-        pass
+        self.duration = duration
+        self.stat_bonus = stat_bonus or {}
+        self.damage_bonus = damage_bonus
+        self.element_penetration = element_penetration
+        self.stackable = stackable
+        
+        self.dynamic_stat_bonus_func = dynamic_stat_bonus_func
+        self.dynamic_damage_bonus_func = dynamic_damage_bonus_func
+        
+        self.freshly_added = False
+        self.self_buff = False
+        self.source: Optional[str] = None
+        self.level = 1
+        
+        self.on_turn_start_data: Optional[Dict] = None
+        self.on_turn_end_data: Optional[Dict] = None
+        
+    def get_damage_bonus(self, character: 'Character') -> float:
+        if self.dynamic_damage_bonus_func:
+            return self.dynamic_damage_bonus_func(character)
+        return self.damage_bonus
 
     def modify_stats(self, stats: dict) -> dict:
-        """
-        默认实现：不修改属性。子类可重写此方法。
-        例如提升20%最大生命的Buff应累加HP%字段。
-        """
         for k, v in self.stat_bonus.items():
             stats[k] = stats.get(k, 0) + v
         return stats
 
-    # 属性名统一映射（如有新属性可补充）
     STAT_NAME_UNIFY_MAP = {
-        'BREAK_EFFECT': 'Break Effect',
-        'Break Effect': 'Break Effect',
-        'Effect RES': 'Effect RES',
-        'EFFECT_RES': 'Effect RES',
-        'CRIT_RATE': 'CRIT Rate',
-        'CRIT Rate': 'CRIT Rate',
-        'CRIT_DMG': 'CRIT DMG',
-        'CRIT DMG': 'CRIT DMG',
-        'ENERGY_REGEN_RATE': 'Energy Regeneration Rate',
-        'Energy Regeneration Rate': 'Energy Regeneration Rate',
-        'EFFECT_HIT_RATE': 'Effect Hit Rate',
-        'Effect Hit Rate': 'Effect Hit Rate',
-        'OUTGOING_HEALING': 'Outgoing Healing Boost',
-        'Outgoing Healing Boost': 'Outgoing Healing Boost',
-        'WIND_DMG': 'Wind DMG',
-        'Wind DMG': 'Wind DMG',
-        'LIGHTNING_DMG': 'Lightning DMG',
-        'Lightning DMG': 'Lightning DMG',
-        'FIRE_DMG': 'Fire DMG',
-        'Fire DMG': 'Fire DMG',
-        'ICE_DMG': 'Ice DMG',
-        'Ice DMG': 'Ice DMG',
-        'PHYSICAL_DMG': 'Physical DMG',
-        'Physical DMG': 'Physical DMG',
-        'QUANTUM_DMG': 'Quantum DMG',
-        'Quantum DMG': 'Quantum DMG',
-        'IMAGINARY_DMG': 'Imaginary DMG',
-        'Imaginary DMG': 'Imaginary DMG',
-        # 其它属性可补充
+        'BREAK_EFFECT': 'Break Effect', 'Break Effect': 'Break Effect', 'Effect RES': 'Effect RES',
+        'EFFECT_RES': 'Effect RES', 'CRIT_RATE': 'CRIT Rate', 'CRIT Rate': 'CRIT Rate',
+        'CRIT_DMG': 'CRIT DMG', 'CRIT DMG': 'CRIT DMG', 'ENERGY_REGEN_RATE': 'Energy Regeneration Rate',
+        'Energy Regeneration Rate': 'Energy Regeneration Rate', 'EFFECT_HIT_RATE': 'Effect Hit Rate',
+        'Effect Hit Rate': 'Effect Hit Rate', 'OUTGOING_HEALING': 'Outgoing Healing Boost',
+        'Outgoing Healing Boost': 'Outgoing Healing Boost', 'WIND_DMG': 'Wind DMG', 'Wind DMG': 'Wind DMG',
+        'LIGHTNING_DMG': 'Lightning DMG', 'Lightning DMG': 'Lightning DMG', 'FIRE_DMG': 'Fire DMG',
+        'Fire DMG': 'Fire DMG', 'ICE_DMG': 'Ice DMG', 'Ice DMG': 'Ice DMG', 'PHYSICAL_DMG': 'Physical DMG',
+        'Physical DMG': 'Physical DMG', 'QUANTUM_DMG': 'Quantum DMG', 'Quantum DMG': 'Quantum DMG',
+        'IMAGINARY_DMG': 'Imaginary DMG', 'Imaginary DMG': 'Imaginary DMG',
     }
 
     @staticmethod
-    def finalize_stats(base_stats: dict, percent_stats: dict, flat_bonus: Optional[Dict[str, float]] = None, buffs: Optional[List['Buff']] = None) -> dict:
-        """
-        统一结算所有百分比加成，返回最终属性。
-        百分比加成只作用于base_stats，flat_bonus为装备/遗器主副属性的平A加成，最后加算。
-        buffs: 额外的Buff列表（如套装Buff），会统一叠加到percent_stats。
-        """
+    def finalize_stats(base_stats: dict, percent_stats: dict, flat_bonus: Optional[Dict[str, float]] = None, buffs: Optional[List['Buff']] = None, character: Optional['Character'] = None, recursive_guard: bool = False) -> dict:
         final_stats = base_stats.copy()
         flat_bonus = flat_bonus or {}
         percent_stats = percent_stats.copy()
-        # 先应用所有buff的stat_bonus到percent_stats
-        if buffs:
+        
+        # 【关键修正】添加了 recursive_guard 来防止无限循环
+        if buffs and character:
             for buff in buffs:
                 for k, v in buff.stat_bonus.items():
                     percent_stats[k] = percent_stats.get(k, 0) + v
-        # 支持HP/DEF/ATK/SPD等所有主属性的百分比加成
+                
+                # 只有在非递归调用时，才执行动态属性计算
+                if not recursive_guard and buff.dynamic_stat_bonus_func:
+                    dynamic_bonuses = buff.dynamic_stat_bonus_func(character)
+                    for k, v in dynamic_bonuses.items():
+                        # 只在需要时输出动态属性日志
+                        if (Buff._show_dynamic_stats_log and 
+                            buff.name not in Buff._dynamic_stats_logged):
+                            print(f"    [属性计算] {buff.name} 动态属性: {k} +{v*100:.1f}%")
+                            Buff._dynamic_stats_logged.add(buff.name)
+                        percent_stats[k] = percent_stats.get(k, 0) + v
+
         for base, percent in [("HP", "HP%"), ("DEF", "DEF%"), ("ATK", "ATK%"), ("SPD", "SPD%")]:
             base_val = base_stats.get(base, 0)
             percent_val = percent_stats.get(percent, 0)
             flat_val = flat_bonus.get(base, 0)
             final_stats[base] = base_val * (1 + percent_val) + flat_val
-        # 处理其它百分比属性
+
         for k, v in percent_stats.items():
             if k not in ["HP%", "DEF%", "ATK%", "SPD%"]:
                 final_stats[k] = final_stats.get(k, 0) + v
-        # 属性名统一
+        
+        for k, v in list(final_stats.items()):
+            if k.endswith("DMG%"):
+                base_key = k[:-1]
+                final_stats[base_key] = final_stats.get(base_key, 0) + v
+        
+        for k, v in list(final_stats.items()):
+            if k.endswith("DMG Boost"):
+                base_key = k[:-6]
+                final_stats[base_key] = final_stats.get(base_key, 0) + v
+
         unified_stats = {}
         for k, v in final_stats.items():
             unified_key = Buff.STAT_NAME_UNIFY_MAP.get(k, k)
@@ -110,25 +105,21 @@ class Buff:
         return unified_stats
 
     @staticmethod
-    def apply_relic_set_buffs(relics: List[Any], active_sets: Dict[str, Dict[str, float]]) -> List['Buff']:
-        """
-        根据active_sets生成对应的Buff对象列表。
-        """
-        buffs = []
-        for set_name, effects in active_sets.items():
-            buffs.append(Buff(name=f"套装：{set_name}", duration=-1, stat_bonus=effects))
-        return buffs
-
-    @staticmethod
     def create_skill_buff(name: str, duration: int, stat_bonus: Dict[str, float], source: str = "skill", level: int = 1, damage_bonus: float = 0, element_penetration: float = 0) -> 'Buff':
-        """
-        创建技能Buff的便捷方法
-        """
-        # 如果没有指定持续时间，设为永久
         if duration is None or duration == 0:
             duration = -1
         
         buff = Buff(name=name, duration=duration, stat_bonus=stat_bonus, damage_bonus=damage_bonus, element_penetration=element_penetration)
         buff.source = source
         buff.level = level
-        return buff 
+        return buff
+    
+    @staticmethod
+    def reset_dynamic_stats_log():
+        """重置动态属性日志状态，允许重新输出日志"""
+        Buff._dynamic_stats_logged.clear()
+    
+    @staticmethod
+    def set_dynamic_stats_log_enabled(enabled: bool):
+        """设置是否启用动态属性日志输出"""
+        Buff._show_dynamic_stats_log = enabled

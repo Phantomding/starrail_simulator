@@ -1,7 +1,12 @@
-# relic_set_skill.py
+# starrail/core/skills/relic_set_skill.py (最终版)
 from typing import Dict, Any, Optional, List
 from abc import ABC, abstractmethod
-import re
+from starrail.utils.logger import logger
+
+# 前向声明以支持类型提示
+if False:
+    from starrail.core.character import Character
+    from starrail.core.skills.buff import Buff
 
 class RelicSetSkill(ABC):
     """遗器套装技能基类"""
@@ -13,261 +18,194 @@ class RelicSetSkill(ABC):
     
     @abstractmethod
     def get_base_stats(self) -> Dict[str, float]:
-        """获取基础属性加成"""
+        """获取静态的基础属性加成 (通常用于2件套效果)"""
         pass
     
-    @abstractmethod
-    def get_battle_effects(self, character) -> List[Any]:
-        """获取战斗中的效果（如Buff等）"""
-        pass
-    
-    @abstractmethod
-    def on_battle_start(self, character):
+    # --- 事件钩子 (通常用于4件套或更复杂的效果) ---
+    def on_battle_start(self, character: 'Character'):
         """战斗开始时触发"""
-        pass
-    
-    @abstractmethod
-    def on_turn_start(self, character):
-        """回合开始时触发"""
-        pass
-    
-    @abstractmethod
-    def on_skill_used(self, character, skill_type: str):
-        """使用技能时触发"""
-        pass
-    
-    @abstractmethod
-    def on_damage_dealt(self, character, damage: float, skill_type: str):
-        """造成伤害时触发"""
-        pass
-    
-    @abstractmethod
-    def on_damage_received(self, character, damage: float):
-        """受到伤害时触发"""
-        pass
-    
-    @abstractmethod
-    def on_enemy_killed(self, character):
-        """击杀敌人时触发"""
-        pass
+        logger.log(f"[遗器] {character.name} 装备了 '{self.set_name}'", color="cyan")
+
+    def on_turn_start(self, character: 'Character'): pass
+    def on_skill_used(self, character: 'Character', skill_type: str): pass
+    def on_damage_dealt(self, character: 'Character', damage: float, skill_type: str): pass
+    def on_damage_received(self, character: 'Character', damage: float): pass
+    def on_enemy_killed(self, character: 'Character'): pass
+
+class GeniusOfBrilliantStarsSkill(RelicSetSkill):
+    """繁星璀璨的天才 (Genius of Brilliant Stars)"""
+
+    def __init__(self, set_name: str, description: str, level: int = 1):
+        super().__init__(set_name, description, level)
+        self.quantum_dmg_bonus = 0.10
+        self.base_def_ignore = 0.10
+        self.extra_def_ignore = 0.10
+
+    def get_base_stats(self) -> Dict[str, float]:
+        # 2-piece effect
+        return {"Quantum DMG": self.quantum_dmg_bonus}
+
+    def on_battle_start(self, character: 'Character'):
+        # 4-piece effect
+        super().on_battle_start(character)
+        from starrail.core.skills.buff import Buff
+
+        def dynamic_genius_bonus(char: 'Character') -> Dict[str, float]:
+            total_ignore = self.base_def_ignore
+            target = getattr(char, '_current_target', None)
+            if target and 'Quantum' in getattr(target, 'weaknesses', []):
+                total_ignore += self.extra_def_ignore
+            
+            if total_ignore > 0:
+                logger.log_verbose(f"-> [遗器效果] '{self.set_name}' 提供 {total_ignore:.0%} 防御穿透")
+                return {"DEF Ignore %": total_ignore}
+            return {}
+
+        genius_buff = Buff(name="Genius DEF Ignore", duration=-1, dynamic_stat_bonus_func=dynamic_genius_bonus)
+        character.add_buff(genius_buff)
 
 class SpaceSealingStationSkill(RelicSetSkill):
-    """Space Sealing Station 套装技能"""
+    """太空封印站 (Space Sealing Station)"""
     
     def __init__(self, set_name: str, description: str, level: int = 1):
         super().__init__(set_name, description, level)
-        # 解析描述中的参数
-        self._parse_description()
-    
-    def _parse_description(self):
-        """解析套装描述，提取参数"""
-        # 基础ATK加成
-        atk_match = re.search(r'ATK by <b>(\d+)%</b>', self.description)
-        self.base_atk_bonus = float(atk_match.group(1)) / 100 if atk_match else 0.12
-        
-        # 速度阈值和额外ATK加成
-        spd_match = re.search(r'SPD reaches <b>(\d+)</b>', self.description)
-        self.spd_threshold = int(spd_match.group(1)) if spd_match else 120
-        
-        extra_atk_match = re.search(r'ATK increases by an extra <b>(\d+)%</b>', self.description)
-        self.extra_atk_bonus = float(extra_atk_match.group(1)) / 100 if extra_atk_match else 0.12
-    
+        self.base_atk_bonus = 0.12
+        self.extra_atk_bonus = 0.12
+        self.spd_threshold = 120
+
     def get_base_stats(self) -> Dict[str, float]:
-        """获取基础属性加成（ATK）"""
         return {"ATK%": self.base_atk_bonus}
     
-    def get_battle_effects(self, character) -> List[Any]:
-        """获取战斗中的效果"""
-        effects = []
-        current_spd = character.spd
-        
-        # 检查是否达到速度阈值
-        if current_spd >= self.spd_threshold:
-            from starrail.core.skills.buff import Buff
-            extra_atk_buff = Buff.create_skill_buff(
-                name="Space Sealing Station Extra ATK",
-                duration=-1,  # 永久效果
-                stat_bonus={"ATK%": self.extra_atk_bonus},
-                source="relic_set",
-                level=self.level
-            )
-            # 遗器套装Buff是角色自己的装备提供的，应该享受首回合保护
-            extra_atk_buff.self_buff = True
-            effects.append(extra_atk_buff)
-        
-        return effects
-    
-    def on_battle_start(self, character):
-        """战斗开始时应用效果"""
-        current_spd = character.spd
-        if current_spd >= self.spd_threshold:
-            print(f"[遗器套装] {character.name} 的 {self.set_name} 套装激活 (速度: {current_spd})")
-    
-    def on_turn_start(self, character):
-        """回合开始时更新效果"""
-        pass
-    
-    def on_skill_used(self, character, skill_type: str):
-        """使用技能时触发"""
-        pass
-    
-    def on_damage_dealt(self, character, damage: float, skill_type: str):
-        """造成伤害时触发"""
-        pass
-    
-    def on_damage_received(self, character, damage: float):
-        """受到伤害时触发"""
-        pass
-    
-    def on_enemy_killed(self, character):
-        """击杀敌人时触发"""
-        pass
+    def on_battle_start(self, character: 'Character'):
+        super().on_battle_start(character)
+        from starrail.core.skills.buff import Buff
+
+        def dynamic_station_bonus(char: 'Character') -> Dict[str, float]:
+            current_spd = char.get_current_stats().get("SPD", 0)
+            if current_spd >= self.spd_threshold:
+                logger.log_verbose(f"-> [遗器效果] '{self.set_name}' 速度达标({current_spd:.0f})，提供额外ATK")
+                return {"ATK%": self.extra_atk_bonus}
+            return {}
+
+        station_buff = Buff(name="Space Sealing Station Bonus", duration=-1, dynamic_stat_bonus_func=dynamic_station_bonus)
+        character.add_buff(station_buff)
 
 class FleetOfTheAgelessSkill(RelicSetSkill):
-    """Fleet of the Ageless 套装技能"""
+    """不老者的仙舟 (Fleet of the Ageless)"""
     
     def __init__(self, set_name: str, description: str, level: int = 1):
         super().__init__(set_name, description, level)
-        self._parse_description()
-    
-    def _parse_description(self):
-        """解析套装描述，提取参数"""
-        # 基础HP加成
-        hp_match = re.search(r'Max HP by <b>(\d+)%</b>', self.description)
-        self.base_hp_bonus = float(hp_match.group(1)) / 100 if hp_match else 0.12
-        
-        # 速度阈值和团队ATK加成
-        spd_match = re.search(r'SPD reaches <b>(\d+)</b>', self.description)
-        self.spd_threshold = int(spd_match.group(1)) if spd_match else 120
-        
-        team_atk_match = re.search(r'all allies\' ATK increases by <b>(\d+)%</b>', self.description)
-        self.team_atk_bonus = float(team_atk_match.group(1)) / 100 if team_atk_match else 0.08
-    
+        self.base_hp_bonus = 0.12
+        self.team_atk_bonus = 0.08
+        self.spd_threshold = 120
+
     def get_base_stats(self) -> Dict[str, float]:
-        """获取基础属性加成（HP）"""
         return {"HP%": self.base_hp_bonus}
     
-    def get_battle_effects(self, character) -> List[Any]:
-        """获取战斗中的效果"""
-        effects = []
-        current_spd = character.spd
+    def on_battle_start(self, character: 'Character'):
+        super().on_battle_start(character)
+        current_spd = character.get_current_stats().get("SPD", 0)
         
-        # 检查是否达到速度阈值
         if current_spd >= self.spd_threshold:
+            logger.log(f"[遗器光环] '{self.set_name}' 速度达标({current_spd:.0f})，为全队提供ATK光环！", color="green")
             from starrail.core.skills.buff import Buff
-            team_atk_buff = Buff.create_skill_buff(
-                name="Fleet of the Ageless Team ATK",
-                duration=-1,  # 永久效果
-                stat_bonus={"ATK%": self.team_atk_bonus},
-                source="relic_set",
-                level=self.level
-            )
-            effects.append(team_atk_buff)
-        
-        return effects
-    
-    def on_battle_start(self, character):
-        """战斗开始时应用效果"""
-        current_spd = character.spd
-        if current_spd >= self.spd_threshold:
-            print(f"[遗器套装] {character.name} 的 {self.set_name} 套装激活 (速度: {current_spd})")
-    
-    def on_turn_start(self, character):
-        """回合开始时更新效果"""
-        pass
-    
-    def on_skill_used(self, character, skill_type: str):
-        """使用技能时触发"""
-        pass
-    
-    def on_damage_dealt(self, character, damage: float, skill_type: str):
-        """造成伤害时触发"""
-        pass
-    
-    def on_damage_received(self, character, damage: float):
-        """受到伤害时触发"""
-        pass
-    
-    def on_enemy_killed(self, character):
-        """击杀敌人时触发"""
-        pass
+            
+            battle_context = getattr(character, '_battle_context', None)
+            if not battle_context: return
+
+            allies = [c for c in battle_context.characters if c.side == character.side and c.is_alive()]
+            for ally in allies:
+                team_buff = Buff(name=f"Fleet Aura (from {character.name})", duration=-1, stat_bonus={"ATK%": self.team_atk_bonus})
+                ally.add_buff(team_buff)
 
 class EagleOfTwilightLineSkill(RelicSetSkill):
-    """Eagle of Twilight Line 套装技能"""
+    """晨昏交界的翔鹰 (Eagle of Twilight Line)"""
     
     def __init__(self, set_name: str, description: str, level: int = 1):
         super().__init__(set_name, description, level)
-        self._parse_description()
-    
-    def _parse_description(self):
-        """解析套装描述，提取参数"""
-        # 风属性伤害加成
-        wind_dmg_match = re.search(r'Wind DMG by <b>(\d+)%</b>', self.description)
-        self.wind_dmg_bonus = float(wind_dmg_match.group(1)) / 100 if wind_dmg_match else 0.10
-        
-        # 终极技后行动提前
-        advance_match = re.search(r'Advanced Forward by <b>(\d+)%</b>', self.description)
-        self.advance_forward = float(advance_match.group(1)) / 100 if advance_match else 0.25
+        self.wind_dmg_bonus = 0.10
+        self.advance_forward = 0.25
     
     def get_base_stats(self) -> Dict[str, float]:
-        """获取基础属性加成（风属性伤害）"""
+        # 2-piece effect
         return {"Wind DMG": self.wind_dmg_bonus}
     
-    def get_battle_effects(self, character) -> List[Any]:
-        """获取战斗中的效果"""
-        return []
-    
-    def on_battle_start(self, character):
-        """战斗开始时应用效果"""
-        pass
-    
-    def on_turn_start(self, character):
-        """回合开始时更新效果"""
-        pass
-    
-    def on_skill_used(self, character, skill_type: str):
-        """使用技能时触发"""
+    def on_skill_used(self, character: 'Character', skill_type: str):
+        # 4-piece effect
         if skill_type == "Ultra":
-            # 终极技后行动提前
-            print(f"[遗器套装] {character.name} 使用终极技，{self.set_name} 套装效果触发，立即推进 {self.advance_forward*100:.0f}% 行动条")
-            # 立即推进行动条
+            logger.log(f"[遗器事件] '{self.set_name}' 效果触发，行动提前 {self.advance_forward:.0%}", color="blue")
             battle_context = getattr(character, '_battle_context', None)
-            if battle_context and hasattr(battle_context, 'boost_action_progress'):
-                before = battle_context.action_progress.get(character, 0)
+            if battle_context:
                 battle_context.boost_action_progress(character, self.advance_forward)
-                after = battle_context.action_progress.get(character, 0)
-                print(f"[行动进度提升] {character.name}: {before:.4f} -> {after:.4f} (+{self.advance_forward:.4f})")
+
+class InertSalsottoSkill(RelicSetSkill):
+    """停转的萨尔索图 (Inert Salsotto)"""
     
-    def on_damage_dealt(self, character, damage: float, skill_type: str):
-        """造成伤害时触发"""
-        pass
+    def __init__(self, set_name: str, description: str, level: int = 1):
+        super().__init__(set_name, description, level)
+        self.base_crit_rate_bonus = 0.08
+        self.crit_rate_threshold = 0.50
+        self.dmg_bonus = 0.15
+
+    def get_base_stats(self) -> Dict[str, float]:
+        return {"CRIT Rate": self.base_crit_rate_bonus}
     
-    def on_damage_received(self, character, damage: float):
-        """受到伤害时触发"""
-        pass
-    
-    def on_enemy_killed(self, character):
-        """击杀敌人时触发"""
-        pass
+    def on_battle_start(self, character: 'Character'):
+        super().on_battle_start(character)
+        from starrail.core.skills.buff import Buff
+
+        def dynamic_salsotto_bonus(char: 'Character') -> float:
+            current_stats = char.get_current_stats()
+            current_crit_rate = current_stats.get("CRIT Rate", 0)
+            last_skill_type = getattr(char, '_last_skill_type', 'Normal')
+
+            if current_crit_rate >= self.crit_rate_threshold and last_skill_type in ["Ultra", "Follow-up"]:
+                logger.log_verbose(f"-> [遗器效果] '{self.set_name}' 生效，提供 {self.dmg_bonus:.0%} 增伤")
+                return self.dmg_bonus
+            return 0.0
+
+        salsotto_buff = Buff(name="Salsotto DMG Bonus", duration=-1, dynamic_damage_bonus_func=dynamic_salsotto_bonus)
+        character.add_buff(salsotto_buff)
+
+# --- 新增套装: 云无留迹的过客 ---
+class PasserbyOfWanderingCloudSkill(RelicSetSkill):
+    """云无留迹的过客 (Passerby of Wandering Cloud)"""
+
+    def __init__(self, set_name: str, description: str, level: int = 1):
+        super().__init__(set_name, description, level)
+        self.healing_bonus = 0.10
+
+    def get_base_stats(self) -> Dict[str, float]:
+        """2件套效果: 治疗量提高10%"""
+        return {"Outgoing Healing Boost": self.healing_bonus}
+
+    def on_battle_start(self, character: 'Character'):
+        """4件套效果: 在战斗开始时，立即为我方恢复1个战技点"""
+        super().on_battle_start(character)
+        battle_context = getattr(character, '_battle_context', None)
+        if battle_context:
+            logger.log(f"[遗器效果] '{self.set_name}' 4件套效果触发，为 {character.side} 阵营恢复1个战技点。", color="green")
+            battle_context.gain_skill_point(character)
+# --- 新增结束 ---
+
 
 class RelicSetSkillFactory:
     """遗器套装技能工厂类"""
     
     _skill_classes = {
+        "Genius of Brilliant Stars": GeniusOfBrilliantStarsSkill,
         "Space Sealing Station": SpaceSealingStationSkill,
         "Fleet of the Ageless": FleetOfTheAgelessSkill,
         "Eagle of Twilight Line": EagleOfTwilightLineSkill,
-        # 可以继续添加其他遗器套装技能
+        "Inert Salsotto": InertSalsottoSkill,
+        # --- 注册新套装 ---
+        "Passerby of Wandering Cloud": PasserbyOfWanderingCloudSkill,
     }
     
     @classmethod
     def create_skill(cls, set_name: str, description: str, level: int = 1) -> Optional[RelicSetSkill]:
-        """创建遗器套装技能实例"""
-        if set_name in cls._skill_classes:
-            skill_class = cls._skill_classes[set_name]
-            return skill_class(
-                set_name=set_name,
-                description=description,
-                level=level
-            )
-        return None 
+        skill_class = cls._skill_classes.get(set_name)
+        if skill_class:
+            return skill_class(set_name=set_name, description=description, level=level)
+        logger.log(f"[警告] 找不到名为 '{set_name}' 的遗器套装技能实现。", color="yellow")
+        return None
