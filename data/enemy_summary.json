@@ -1,0 +1,45 @@
+{
+  "total_count": 2031,
+  "by_rank": {
+    "MinionLv2": 944,
+    "Elite": 565,
+    "LittleBoss": 332,
+    "BigBoss": 50,
+    "Minion": 140
+  },
+  "by_elite_group": {
+    "1": 2004,
+    "2": 5,
+    "140": 18,
+    "100": 1,
+    "705": 2,
+    "142": 1
+  },
+  "damage_types": [
+    "Wind",
+    "Ice",
+    "Thunder",
+    "Imaginary",
+    "Quantum",
+    "Physical",
+    "Fire"
+  ],
+  "weaknesses": [
+    "Wind",
+    "Ice",
+    "Thunder",
+    "Imaginary",
+    "Quantum",
+    "Physical",
+    "Fire"
+  ],
+  "resistances": [
+    "Wind",
+    "Ice",
+    "Thunder",
+    "Imaginary",
+    "Quantum",
+    "Physical",
+    "Fire"
+  ]
+}

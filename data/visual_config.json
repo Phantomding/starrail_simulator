@@ -1,0 +1,184 @@
+{
+  "team": [
+    {
+      "id": "1102",
+      "name": "Seele",
+      "light_cone": "23001",
+      "relics": {
+        "Head": "ad1de2c2-98f1-4cf5-aebc-055dc0f80e7a",
+        "Hands": "3b5e19fb-543f-4d9e-b82a-c45bb6b09a2a",
+        "Body": "eebc48d4-ebdd-4f91-a9ec-4c9934227b1e",
+        "Feet": "95bdc1fb-667a-4496-b558-775bcf1539ae",
+        "LinkRope": "c3176a1b-1f9c-48cd-8547-0d66d6c029c6",
+        "PlanarSphere": "f46a76a9-78fb-4eae-aa1b-d92f5a82a42a"
+      },
+      "notes": "由可视化选择器添加"
+    },
+    {
+      "id": "1105",
+      "name": "Natasha",
+      "light_cone": "21000",
+      "relics": {
+        "Hands": "ecae5c93-c34b-4338-9edf-782073032fb3",
+        "Body": "68972b65-fbe4-477d-83a1-49dabb08fbe9",
+        "Feet": "da9cc326-b632-46f5-889f-dc31e6da71f6",
+        "Head": "1520f857-d1fe-48ae-b88a-edb8eb0f8cce",
+        "PlanarSphere": "5b95a624-4776-41a9-89f1-5f02ad34a300",
+        "LinkRope": "19f96ad0-51c4-4ce6-b18c-32fe470b7f30"
+      },
+      "notes": "由可视化选择器添加"
+    },
+    {
+      "id": "1101",
+      "name": "Bronya",
+      "light_cone": "23003",
+      "relics": {
+        "Head": "51e500d7-d450-4345-a253-0a0260fd2425",
+        "Hands": "e1826fca-0a89-4e24-89c2-dd8c4a33e0c3",
+        "Body": "68910fc0-77db-4534-9330-446df0b886e8",
+        "Feet": "841ec309-f0d5-4db1-9c58-2ba68c597b31",
+        "PlanarSphere": "5b95a624-4776-41a9-89f1-5f02ad34a300",
+        "LinkRope": "76108686-e7b1-42ed-9b11-31a1bd9a8309"
+      },
+      "notes": "由可视化选择器添加"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "1002040",
+      "name": "Enemy_1002040",
+      "rank": "MinionLv2",
+      "stats": {
+        "ATK": 180.0,
+        "DEF": 210.0,
+        "HP": 52000.9,
+        "SPD": 183.0,
+        "Stance": 60.0,
+        "CRIT_DMG": 0.2,
+        "Status_RES": 0.1
+      },
+      "skills": [
+        {
+          "id": 100204001,
+          "name": "Skill_100204001",
+          "damage_type": "Physical",
+          "attack_type": "Normal",
+          "sp_cost": 10,
+          "delay_ratio": 1,
+          "params": [
+            3,
+            0.5,
+            2
+          ]
+        }
+      ],
+      "weaknesses": [
+        "Wind",
+        "Quantum"
+      ],
+      "resistances": {
+        "Physical": 0.2,
+        "Fire": 0.2,
+        "Ice": 0.2,
+        "Thunder": 0.2,
+        "Imaginary": 0.2
+      },
+      "toughness": 20.0,
+      "max_toughness": 20.0,
+      "ai_type": "Config/ConfigAI/Monster_Common_SequenceThree_AI.json",
+      "elite_group": 1
+    },
+    {
+      "id": "100204001",
+      "name": "Enemy_100204001",
+      "rank": "MinionLv2",
+      "stats": {
+        "ATK": 18.0,
+        "DEF": 210.0,
+        "HP": 55120.9,
+        "SPD": 120.0,
+        "Stance": 60.0,
+        "CRIT_DMG": 0.2,
+        "Status_RES": 0.1
+      },
+      "skills": [
+        {
+          "id": 100204001,
+          "name": "Skill_100204001",
+          "damage_type": "Physical",
+          "attack_type": "Normal",
+          "sp_cost": 10,
+          "delay_ratio": 1,
+          "params": [
+            3,
+            0.5,
+            2
+          ]
+        }
+      ],
+      "weaknesses": [
+        "Wind",
+        "Quantum"
+      ],
+      "resistances": {
+        "Physical": 0.2,
+        "Fire": 0.2,
+        "Ice": 0.4,
+        "Thunder": 0.2,
+        "Imaginary": 0.2
+      },
+      "toughness": 60.0,
+      "max_toughness": 60.0,
+      "ai_type": "Config/ConfigAI/Monster_Common_SequenceThree_AI.json",
+      "elite_group": 1
+    },
+    {
+      "id": "100204002",
+      "name": "Enemy_100204002",
+      "rank": "MinionLv2",
+      "stats": {
+        "ATK": 9.0,
+        "DEF": 210.0,
+        "HP": 32.5500279,
+        "SPD": 83.0,
+        "Stance": 60.0,
+        "CRIT_DMG": 0.2,
+        "Status_RES": 0.1
+      },
+      "skills": [
+        {
+          "id": 100204001,
+          "name": "Skill_100204001",
+          "damage_type": "Physical",
+          "attack_type": "Normal",
+          "sp_cost": 10,
+          "delay_ratio": 1,
+          "params": [
+            3,
+            0.5,
+            2
+          ]
+        }
+      ],
+      "weaknesses": [
+        "Wind",
+        "Quantum"
+      ],
+      "resistances": {
+        "Physical": 0.2,
+        "Fire": 0.2,
+        "Ice": 0.2,
+        "Thunder": 0.2,
+        "Imaginary": 0.2
+      },
+      "toughness": 60.0,
+      "max_toughness": 60.0,
+      "ai_type": "Config/ConfigAI/Monster_Common_SequenceThree_AI.json",
+      "elite_group": 1
+    }
+  ],
+  "notes": {
+    "team_composition": "可视化选择器生成的配置",
+    "strategy": "自动生成的战斗策略"
+  }
+}
